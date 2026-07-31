@@ -41,3 +41,24 @@ Stage Summary:
 - Artist roster: 30+ artists across 6 categories (clasicos, pop/rock, Espana, urbano, indie/alt, favoritos)
 - 3 markets: Mexico, Chile, Espana with tailored content per market
 - DB seeded cleanly with deleteMany before inserts to prevent duplicates
+
+---
+Task ID: 3
+Agent: Main (continuation)
+Task: Pivot tone from gracioso/sarcástico to conversacional/trending-first
+
+Work Log:
+- Searched real trending data via web search: UFC Belgrado (Medic vs Rodríguez), Noche UFC (Alexa Grasso, Sep 13), Maná Vivir Sin Aire Tour Chile (Dic 5), Luis Miguel Chile 2026 (10 fechas), Liga MX Apertura 2025, Ignacio Bahamondes UFC, Argentina selección trending
+- Rewrote system prompt in scripts/route.ts: removed sarcasmo/humor/gracioso, added TRENDING FIRST, TIEMPO PRESENTE, PREGUNTA SIEMPRE, BARRISTA LATINO, COQUETO EN EMOCIONAL, NO JUNTAR TECH CON DEPORTE
+- Removed hook_ai and hook_hybrid types from scripts-panel.tsx and system prompt typePrompts
+- Updated typeConfig labels: removed "80%" and "50/50", renamed "Apoyo Emocional" to "Emocional/Coqueto"
+- Replaced 4 seed hooks with real trending content: UFC Belgrado, Maná Chile, Noche UFC Alexa Grasso, Emocional/Coqueto
+- Updated PERFIL_AVATAR.md: new rasgos (removed sarcástico), new tono de voz examples (user's examples), added Estilo de Contenido section, updated hooks examples with real trending, updated líneas rojas table
+- Re-seeded DB with clean data, lint passed clean
+
+Stage Summary:
+- Tone pivot: from sarcastic/funny to conversacional/directo/barrista
+- Content types: 4 hooks (futbol, mma, cultura, emocional) + full_script + custom. No more IA/hybrid.
+- Every hook: trending (máx 1 semana), presente, pregunta al final, NUNCA gracioso
+- Emocional hooks can be coqueto/sugerente for engagement
+- Argentina added as trending football topic (post-Mundial)

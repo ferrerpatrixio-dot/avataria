@@ -23,8 +23,6 @@ import {
   Pencil,
   Bot,
   Flame,
-  Code2,
-  Shuffle,
   FileText,
   Trophy,
   Music,
@@ -51,12 +49,10 @@ interface ScriptsPanelProps {
 }
 
 const typeConfig: Record<string, { label: string; icon: React.ElementType; color: string }> = {
-  hook_futbol: { label: 'Fútbol 80%', icon: Trophy, color: 'text-green-400 bg-green-500/10' },
-  hook_mma: { label: 'MMA 80%', icon: Flame, color: 'text-red-400 bg-red-500/10' },
-  hook_ai: { label: 'IA 80%', icon: Code2, color: 'text-cyan-400 bg-cyan-500/10' },
-  hook_hybrid: { label: 'Híbrida 50/50', icon: Shuffle, color: 'text-purple-400 bg-purple-500/10' },
-  hook_cultura: { label: 'Cultura 80%', icon: Music, color: 'text-pink-400 bg-pink-500/10' },
-  hook_emocional: { label: 'Apoyo Emocional', icon: Heart, color: 'text-rose-400 bg-rose-500/10' },
+  hook_futbol: { label: 'Fútbol', icon: Trophy, color: 'text-green-400 bg-green-500/10' },
+  hook_mma: { label: 'MMA/UFC', icon: Flame, color: 'text-red-400 bg-red-500/10' },
+  hook_cultura: { label: 'Música/Cine/Series', icon: Music, color: 'text-pink-400 bg-pink-500/10' },
+  hook_emocional: { label: 'Emocional/Coqueto', icon: Heart, color: 'text-rose-400 bg-rose-500/10' },
   full_script: { label: 'Script Completo', icon: FileText, color: 'text-amber-400 bg-amber-500/10' },
   custom: { label: 'Personalizado', icon: Sparkles, color: 'text-primary bg-primary/10' },
 }
@@ -70,7 +66,7 @@ const statusConfig: Record<string, { label: string; variant: 'default' | 'second
 
 export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
   const [generating, setGenerating] = useState(false)
-  const [genType, setGenType] = useState('hook_hybrid')
+  const [genType, setGenType] = useState('hook_mma')
   const [customPrompt, setCustomPrompt] = useState('')
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editContent, setEditContent] = useState('')
@@ -151,12 +147,10 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="hook_futbol">⚽ Fútbol 80%</SelectItem>
-                  <SelectItem value="hook_mma">🔥 MMA 80%</SelectItem>
-                  <SelectItem value="hook_ai">💻 IA/Programación 80%</SelectItem>
-                  <SelectItem value="hook_hybrid">🔀 Híbrida 50/50</SelectItem>
-                  <SelectItem value="hook_cultura">🎵 Cultura (Música/Cine/Series)</SelectItem>
-                  <SelectItem value="hook_emocional">💝 Apoyo Emocional</SelectItem>
+                  <SelectItem value="hook_futbol">⚽ Fútbol</SelectItem>
+                  <SelectItem value="hook_mma">🔥 MMA/UFC</SelectItem>
+                  <SelectItem value="hook_cultura">🎵 Música/Cine/Series</SelectItem>
+                  <SelectItem value="hook_emocional">💝 Emocional/Coqueto</SelectItem>
                   <SelectItem value="full_script">📝 Script Completo (60s)</SelectItem>
                   <SelectItem value="custom">✨ Personalizado</SelectItem>
                 </SelectContent>
@@ -166,7 +160,7 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
               <div className="space-y-2">
                 <label className="text-xs text-muted-foreground">Instrucciones personalizadas</label>
                 <Textarea
-                  placeholder="Ej: Un hook sobre la pelea de Jones vs Miocic pero desde la perspectiva de un debugger..."
+                  placeholder="Ej: Un hook sobre Maná viniendo a Chile, preguntando si alguien más va..."
                   value={customPrompt}
                   onChange={(e) => setCustomPrompt(e.target.value)}
                   rows={2}

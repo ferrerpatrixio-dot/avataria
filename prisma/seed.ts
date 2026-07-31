@@ -119,36 +119,36 @@ async function main() {
     ],
   })
 
-  // Scripts
+  // Scripts — hooks trending reales (actualizados ago 2025)
   await db.script.createMany({
     data: [
       {
         projectId: project.id,
-        title: 'Hook: Enfoque Fútbol (80%)',
-        type: 'hook_futbol',
-        content: 'Neta, el gol de Chicharito en el Mundial me sigue dando escalofríos. ¿A ti también? Porque si sí, ya somos familia.',
-        duration: '15s', tone: 'calido_cercano', variation: 1, status: 'draft', aiGenerated: true,
-      },
-      {
-        projectId: project.id,
-        title: 'Hook: Enfoque MMA (80%)',
+        title: 'Hook: UFC Belgrado — Medic vs Rodríguez',
         type: 'hook_mma',
-        content: 'Vi esa sumisión de Alexa Grasso y grité tan fuerte que mi vecino tocó la puerta. ¿Tú también eres así cuando ves una pelea buena?',
-        duration: '15s', tone: 'calido_cercano', variation: 2, status: 'draft', aiGenerated: true,
+        content: 'Sábado de UFC y no me lo pierdo. Medic vs Rodríguez en Belgrado, dos guerreros peleando por todo. ¿Tú también la vas a ver?',
+        duration: '15s', tone: 'barrista_conversacional', variation: 1, status: 'draft', aiGenerated: false,
       },
       {
         projectId: project.id,
-        title: 'Hook: Cultura — Música (80%)',
+        title: 'Hook: Maná viene a Chile',
         type: 'hook_cultura',
-        content: 'Estoy escuchando a Peso Pluma y de repente pensé: ¿cuál es la canción que te hace sentir invencible? La mía es Ella Baila Sola. Cuéntame la tuya.',
-        duration: '15s', tone: 'calido_cercano', variation: 3, status: 'draft', aiGenerated: true,
+        content: 'Estoy en Santiago y acabo de ver que Maná viene con el Vivir Sin Aire Tour. La verdad estoy dudando si ir o no. ¿Alguien más se está planteando lo mismo?',
+        duration: '15s', tone: 'conversacional_chileno', variation: 2, status: 'draft', aiGenerated: false,
       },
       {
         projectId: project.id,
-        title: 'Hook: Híbrida Fútbol/Tech (50/50)',
-        type: 'hook_hybrid',
-        content: '¿Sabes qué tienen en común un buen gol y buen código? Que cuando funciona, se siente increíble. Y cuando falla... neta, quieres tirar la computadora. ¿O soy solo yo?',
-        duration: '15s', tone: 'calido_cercano', variation: 4, status: 'draft', aiGenerated: true,
+        title: 'Hook: Noche UFC — Alexa Grasso',
+        type: 'hook_mma',
+        content: 'Estoy contando los días para la Noche UFC. Alexa Grasso sube al octágono y desde Chile le hago toda la barra. ¿Quién más va a apoyar?',
+        duration: '15s', tone: 'barrista_conversacional', variation: 3, status: 'draft', aiGenerated: false,
+      },
+      {
+        projectId: project.id,
+        title: 'Hook: Emocional/Coqueto',
+        type: 'hook_emocional',
+        content: 'Hay algo que me tiene pensando desde ayer: ¿por qué siempre nos enamoramos de quien no nos da nada? Dime que no soy la única.',
+        duration: '15s', tone: 'coqueto_directo', variation: 4, status: 'draft', aiGenerated: false,
       },
     ],
   })
