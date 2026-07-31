@@ -20,7 +20,7 @@ async function main() {
     data: {
       name: 'AVATARIA',
       avatarName: 'Lexa',
-      description: 'Proyecto de Avatar: Lexa — Ingeniera, fanática del fútbol, MMA, música y cine. Cálida, inteligente, cercana. Validación progresiva con enfoque Kill/Go para mercado mexicano y español.',
+      description: 'Proyecto de Avatar: Lexa — Ingeniera mexicana viviendo en Chile. Fanática del fútbol, MMA, música clásica y cine. Cálida, inteligente, cercana. Validación progresiva con enfoque Kill/Go para mercado mexicano, chileno y español.',
       currentPhase: '0',
     },
   })

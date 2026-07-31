@@ -98,7 +98,7 @@ export function BudgetPanel({ budgets }: BudgetPanelProps) {
         </CardHeader>
         <CardContent className="space-y-3">
           {phaseBudgets.map((pb) => (
-            <div key={pb.phase} className={`rounded-lg border ${pb.color} p-3`} key={pb.phase}>
+            <div key={pb.phase} className={`rounded-lg border ${pb.color} p-3`}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-sm font-medium">{pb.phase}</span>
                 <span className="text-xs font-mono text-muted-foreground">${pb.min} - ${pb.max} USD</span>
