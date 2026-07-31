@@ -47,7 +47,7 @@ export function LoginScreen() {
             <span className="text-foreground">RIA</span>
           </h1>
           <p className="text-muted-foreground mt-2 text-sm">
-            Valentina Syntax — MMA + IA + Sarcasmo Mexicano
+            Lexa IA — Ingeniera, Fanática del Fútbol y MMA
           </p>
           <div className="flex items-center justify-center gap-2 mt-3">
             <div className="h-px w-12 bg-border" />\n            <Lock className="w-3 h-3 text-muted-foreground" />\n            <span className="text-xs text-muted-foreground uppercase tracking-widest">Acceso Restringido</span>

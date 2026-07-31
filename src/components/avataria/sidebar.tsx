@@ -45,7 +45,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
             <h2 className="font-bold text-lg leading-none">
               <span className="text-primary">AVATA</span>RIA
             </h2>
-            <p className="text-[10px] text-muted-foreground tracking-wider uppercase">Valentina Syntax</p>
+            <p className="text-[10px] text-muted-foreground tracking-wider uppercase">Lexa IA</p>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
       <div className="border-t border-sidebar-border p-3">
         <div className="flex items-center gap-3 mb-3">
           <Avatar className="w-8 h-8 h-8">
-            <AvatarImage src="/valentina-avatar.png" alt="Avatar" />
+            <AvatarImage src="/lexa-avatar.png" alt="Avatar" />
             <AvatarFallback className="bg-primary/20 text-primary text-xs">
               <Shield className="w-4 h-4" />
             </AvatarFallback>

@@ -124,8 +124,8 @@ function AuthenticatedApp() {
             </span>
           </div>
           <Avatar className="w-7 h-7">
-            <AvatarImage src="/valentina-avatar.png" alt="" />
-            <AvatarFallback className="bg-primary/20 text-primary text-[10px]">VS</AvatarFallback>
+            <AvatarImage src="/lexa-avatar.png" alt="" />
+            <AvatarFallback className="bg-primary/20 text-primary text-[10px]">LX</AvatarFallback>
           </Avatar>
         </header>
 
@@ -147,7 +147,7 @@ function AuthenticatedApp() {
 
         {/* Footer */}
         <footer className="mt-auto border-t border-border px-4 py-4 flex items-center justify-between text-[11px] text-muted-foreground/50">
-          <span>AVATARIA v1.0 — Valentina Syntax</span>
+          <span>AVATARIA v2.0 — Lexa IA</span>
           <span>Acceso Restringido</span>
         </footer>
       </main>

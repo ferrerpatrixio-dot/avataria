@@ -15,10 +15,10 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "AVATARIA - Valentina Syntax | AI Avatar Project",
-  description: "Plataforma de gestión para el proyecto de Avatar IA: MMA + Inteligencia Artificial + Sarcasmo Mexicano",
+  title: "AVATARIA - Lexa IA | Avatar para Fanvue México y España",
+  description: "Plataforma de gestión para avatar IA Lexa — Fanvue, fútbol, MMA y tecnología para México y España.",
   icons: {
-    icon: "/valentina-avatar.png",
+    icon: "/lexa-avatar.png",
   },
 }
 

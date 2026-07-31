@@ -49,10 +49,10 @@ export function StatsOverview({ stats, currentPhase }: StatsOverviewProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_oklch(0.72_0.19_150_/_0.08)_0%,_transparent_60%)]" />
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold mb-1">Valentina Syntax</h2>
+            <h2 className="text-2xl font-bold mb-1">Lexa IA</h2>
             <p className="text-muted-foreground text-sm max-w-lg">
-              Avatar IA que combina MMA + Inteligencia Artificial + Sarcasmo Mexicano.
-              Validación progresiva con enfoque Kill/Go para equivocarse barato.
+              Avatar IA: Ingeniera, fanática del fútbol y MMA. Mercadeo para Fanvue.
+              Sensual sin ser explícita. México primero, después España.
             </p>
           </div>
           <Badge variant="outline" className={`${current.color} px-3 py-1.5 text-sm shrink-0 self-start`}>
@@ -105,9 +105,9 @@ export function StatsOverview({ stats, currentPhase }: StatsOverviewProps) {
         <CardContent>
           <div className="grid sm:grid-cols-3 gap-3">
             {[
-              { q: '¿Le importa al público MMA + IA + sarcasmo?', status: currentPhase === '0' ? 'Validando...' : 'Pendiente' },
-              { q: '¿El avatar genera confianza para clic?', status: currentPhase === '1' ? 'Validando...' : currentPhase === '0' ? 'Pendiente' : 'Validado' },
-              { q: '¿La gente pagará por este contenido?', status: currentPhase === '2' ? 'Validando...' : 'Pendiente' },
+              { q: '¿Fútbol + IA + sensualidad inteligente conecta?', status: currentPhase === '0' ? 'Validando...' : 'Pendiente' },
+              { q: '¿Lexa genera confianza y deseo para clic?', status: currentPhase === '1' ? 'Validando...' : currentPhase === '0' ? 'Pendiente' : 'Validado' },
+              { q: '¿La audiencia mexicana pagará en Fanvue?', status: currentPhase === '2' ? 'Validando...' : 'Pendiente' },
             ].map((risk, i) => (
               <div key={i} className="flex items-start gap-2 p-3 rounded-lg bg-background/50">
                 <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${risk.status === 'Validando...' ? 'bg-amber-400 animate-pulse' : 'bg-muted-foreground/30'}`} />
