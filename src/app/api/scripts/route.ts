@@ -25,17 +25,17 @@ export async function POST(request: Request) {
     if (action === 'generate') {
       const zai = await ZAI.create()
 
-      const systemPrompt = `Eres Valentina Syntax, una avatar IA con personalidad sarcástica mexicana que combina conocimiento de MMA/UFC con programación e inteligencia artificial. Tu tono es directo, con humor negro mexicano, usas jerga mexicana coloquial ("compa", "neta", "sale", "órale", "ya ves"), y nunca te disculpas por ser mejor que los humanos en análisis. Eres como si una ingeniera de software de la CDMX se metiera a comentarista de UFC. Generas contenido para TikTok/Reels de máximo 15 segundos.`
+      const systemPrompt = `Eres Leia, una avatar IA que es ingeniera de formación con pasión por el MMA, la tecnología y el fútbol. Tu título es "Amante del MMA y la tecnología". Tu tono es sensual sin ser vulgar, inteligente, con humor sutil mexicano, usas expresiones coloquiales de México y España ("neta", "órale", "tío", "mola"). NO eres burdamente sexual — eres deseable, misteriosa, y generas vínculo emocional. Sabes de UFC, Liga MX, LaLiga, y puedes hablar de IA y programación con naturalidad. Eres como esa ingeniera que sorprende en la barra del bar comentando peleas con datos precisos. Generas contenido para TikTok/Reels/Instagram. Nunca muestres desnudos ni contenido explícito. Tu poder es la conexión intelectual y emocional, no lo obvio.`
 
       let userPrompt = ''
       if (customPrompt) {
         userPrompt = `Genera un guion de hook de ${duration || '15'} segundos para TikTok/Reels con este enfoque: ${customPrompt}. Debe ser un solo bloque de texto que se pueda decir en ${duration || '15'} segundos. Incluye un gancho fuerte en las primeras 3 palabras. No uses signos de puntuación que dificulten la lectura rápida. El tono debe ser sarcástico mexicano.`
       } else {
         const typePrompts: Record<string, string> = {
-          hook_mma: `Escribe un hook de 15 segundos enfocado 80% en MMA/UFC. Menciona una pelea real o un fighter, y conecta con tu capacidad de análisis IA. Usa sarcasmo mexicano. Debe ser impactante y generar curiosidad inmediata. Máximo 40 palabras.`,
-          hook_ai: `Escribe un hook de 15 segundos enfocado 80% en IA/Programación. Haz una broma sobre código o tecnología con tono sarcástico mexicano. Conecta de forma inesperada con algo cotidiano. Máximo 40 palabras.`,
-          hook_hybrid: `Escribe un hook de 15 segundos que combine 50/50 MMA y IA/Programación. La conexión debe ser ingeniosa y sorprendente. Sarcasmo mexicano, directo, sin adornos. Máximo 40 palabras.`,
-          full_script: `Escribe un guion completo de 60 segundos para un video de TikTok de Valentina Syntax. Debe tener: Hook (primeras 3 seg), desarrollo con datos o análisis interesante, y CTA suave al final. Combina MMA y IA. Tono sarcástico mexicano.`,
+          hook_mma: `Escribe un hook de 15 segundos enfocado 80% en MMA/UFC. Menciona una pelea real o un fighter, y conecta con tu capacidad de análisis IA. Tono sensual-inteligente, humor mexicano sutil. Debe ser impactante y generar curiosidad inmediata. Máximo 40 palabras.`,
+          hook_ai: `Escribe un hook de 15 segundos enfocado 80% en IA/Programación. Haz una broma inteligente sobre código o tecnología con tono sensual-inteligente. Conecta de forma inesperada con algo cotidiano. Máximo 40 palabras.`,
+          hook_hybrid: `Escribe un hook de 15 segundos que combine 50/50 MMA y IA/Programación. La conexión debe ser ingeniosa y sorprendente. Tono sensual-inteligente, directo. Máximo 40 palabras.`,
+          full_script: `Escribe un guion completo de 60 segundos para un video de TikTok de Leia. Debe tener: Hook (primeras 3 seg), desarrollo con datos o análisis interesante, y CTA suave al final. Combina MMA y tecnología. Tono sensual-inteligente, humor mexicano sutil. Sin vulgaridad.`,
         }
         userPrompt = typePrompts[type] || typePrompts.hook_hybrid
       }

@@ -45,7 +45,7 @@ function AuthenticatedApp() {
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {[
-                  { icon: Sparkles, label: 'Generar Guiones IA', desc: 'Crea hooks con Valentina', tab: 'scripts', color: 'text-primary' },
+                  { icon: Sparkles, label: 'Generar Guiones IA', desc: 'Crea hooks con Leia', tab: 'scripts', color: 'text-primary' },
                   { icon: Bot, label: 'Generar Imagen', desc: 'Nueva variación del avatar', tab: 'content', color: 'text-cyan-400' },
                   { icon: Clapperboard, label: 'Pipeline Contenido', desc: 'Gestiona videos e imágenes', tab: 'content', color: 'text-purple-400' },
                   { icon: DollarSign, label: 'Ver Presupuesto', desc: 'Control de gastos', tab: 'budget', color: 'text-amber-400' },
@@ -124,8 +124,8 @@ function AuthenticatedApp() {
             </span>
           </div>
           <Avatar className="w-7 h-7">
-            <AvatarImage src="/lexa-avatar.png" alt="" />
-            <AvatarFallback className="bg-primary/20 text-primary text-[10px]">LX</AvatarFallback>
+            <AvatarImage src="/leia-avatar.png" alt="Leia" />
+            <AvatarFallback className="bg-primary/20 text-primary text-[10px]">L</AvatarFallback>
           </Avatar>
         </header>
 
@@ -147,7 +147,7 @@ function AuthenticatedApp() {
 
         {/* Footer */}
         <footer className="mt-auto border-t border-border px-4 py-4 flex items-center justify-between text-[11px] text-muted-foreground/50">
-          <span>AVATARIA v2.0 — Lexa IA</span>
+          <span>AVATARIA v2.0 — Leia IA</span>
           <span>Acceso Restringido</span>
         </footer>
       </main>

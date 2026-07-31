@@ -114,7 +114,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
         body: JSON.stringify({ action: 'generate_image', prompt: imgPrompt || undefined }),
       })
       if (res.ok) {
-        toast.success('Imagen de Valentina generada')
+        toast.success('Imagen de Leia generada')
         onRefresh()
       } else toast.error('Error generando imagen')
     } catch { toast.error('Error de conexión') }
@@ -230,12 +230,12 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
           </DialogTrigger>
           <DialogContent className="bg-card border-border">
             <DialogHeader>
-              <DialogTitle>Generar Imagen de Valentina</DialogTitle>
+              <DialogTitle>Generar Imagen de Leia</DialogTitle>
               <DialogDescription>Usa IA para generar una nueva variación del avatar</DialogDescription>
             </DialogHeader>
             <div className="space-y-3 py-4">
               <Textarea
-                placeholder="Prompt personalizado (opcional - se usa un prompt por defecto de Valentina)"
+                placeholder="Prompt personalizado (opcional - se usa un prompt por defecto de Leia)"
                 value={imgPrompt}
                 onChange={(e) => setImgPrompt(e.target.value)}
                 rows={4}

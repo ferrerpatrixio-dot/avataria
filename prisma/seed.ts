@@ -19,8 +19,8 @@ async function main() {
   const project = await db.project.create({
     data: {
       name: 'AVATARIA',
-      avatarName: 'Valentina Syntax',
-      description: 'Proyecto de Avatar IA: MMA + IA + Sarcasmo Mexicano. Validación progresiva con enfoque Kill/Go.',
+      avatarName: 'Leia',
+      description: 'Proyecto de Avatar IA: Leia — Amante del MMA y la tecnología. Sensual, inteligente, ingeniera de formación. Validación progresiva con enfoque Kill/Go para mercado mexicano y español.',
       currentPhase: '0',
     },
   })
@@ -66,7 +66,7 @@ async function main() {
   await db.phaseTask.createMany({
     data: [
       { phaseId: phase0.id, title: 'Crear 3 variaciones de Hook (MMA, IA, Híbrida)', description: 'Escribir 3 guiones de 15 segundos', order: 0 },
-      { phaseId: phase0.id, title: 'Generar imagen estática de Valentina con Flux', description: 'Una sola imagen de alta calidad en el gimnasio o frente a setup tech', order: 1 },
+      { phaseId: phase0.id, title: 'Generar imagen estática de Leia con Flux', description: 'Una sola imagen de alta calidad en el gimnasio o frente a setup tech', order: 1 },
       { phaseId: phase0.id, title: 'Edición simple Low-Fi', description: 'Imagen estática + voz ElevenLabs + subtítulos CapCut + música tendencia', order: 2 },
       { phaseId: phase0.id, title: 'Publicar en TikTok e Instagram', description: 'Subir los 3 videos con etiquetas #IA #AvatarIA', order: 3 },
       { phaseId: phase0.id, title: 'Evaluar métricas Day 5', description: '¿Supera 500-1000 vistas orgánicas? ¿Hay comentarios?', order: 4 },
@@ -76,7 +76,7 @@ async function main() {
   // Phase 1 tasks
   await db.phaseTask.createMany({
     data: [
-      { phaseId: phase1.id, title: 'Refinar el Lore de Valentina', description: 'Ajustar personalidad basado en comentarios de Fase 0', order: 0 },
+      { phaseId: phase1.id, title: 'Refinar el Lore de Leia', description: 'Ajustar personalidad basado en comentarios de Fase 0', order: 0 },
       { phaseId: phase1.id, title: 'Pipeline de Video Real', description: 'Flux + LivePortrait o Kling AI, generar 5-7 videos', order: 1 },
       { phaseId: phase1.id, title: 'CTA Suave', description: '"Sígueme para la parte 2", "Comenta CÓDIGO para el prompt"', order: 2 },
       { phaseId: phase1.id, title: 'Configurar Link en Bio', description: 'Linktree gratuito -> Telegram/Discord/Formulario espera', order: 3 },

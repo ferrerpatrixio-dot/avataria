@@ -133,7 +133,7 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
             <Bot className="w-4 h-4 text-primary" />
-            Generador de Guiones — Valentina Syntax IA
+            Generador de Guiones — Leia IA
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">

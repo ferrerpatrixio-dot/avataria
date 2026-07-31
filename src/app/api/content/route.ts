@@ -76,7 +76,7 @@ export async function POST(request: Request) {
       const zai = await ZAI.create()
 
       const fullPrompt = imgPrompt ||
-        'Photorealistic portrait of Valentina Syntax, a striking young Mexican woman in a modern MMA gym. Dark brown hair with teal/cyan highlights, sharp confident eyes, fitted black athletic crop top with neon green circuit patterns. Cinematic lighting, dramatic rim light in cyan and warm orange. Sony A7III, 85mm f/1.4. Hyper-realistic, editorial photography.'
+        'Photorealistic portrait of Leia, a stunning young Latina woman in her mid-20s with a confident sensual gaze. Dark wavy hair past shoulders, natural makeup with subtle smoky eye. Wearing a fitted black crop top and leather jacket. Background: modern MMA gym with neon accents. Cinematic lighting, warm rim light. Sony A7III, 85mm f/1.4. Editorial photography, attractive but classy, no nudity.'
 
       const response = await zai.images.generations.create({
         prompt: fullPrompt,
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
       const imageBase64 = response.data[0]?.base64
       if (!imageBase64) throw new Error('No se generó la imagen')
 
-      const filename = `valentina_${Date.now()}.png`
+      const filename = `leia_${Date.now()}.png`
       const outputPath = path.join(process.cwd(), 'public', 'generated-images', filename)
       fs.writeFileSync(outputPath, Buffer.from(imageBase64, 'base64'))
 
