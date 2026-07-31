@@ -140,13 +140,14 @@ async function main() {
     ],
   })
 
-  // Budgets (todos en $0 — son PRESUPUESTOS PLANIFICADOS, no gastos reales)
-  // Se actualizarán cuando realmente se gaste dinero
+  // Budgets: plannedAmount = estimado, amount = gasto REAL ($0 hasta que se gaste de verdad)
   await db.budget.createMany({
     data: [
-      { projectId: project.id, category: 'elevenlabs', description: 'TTS — Still not configured, $0 until Fase 0 validates', amount: 0, currency: 'USD' },
-      { projectId: project.id, category: 'flux', description: 'Generación de imagen estática base (incluido en z-ai-sdk)', amount: 0, currency: 'USD' },
-      { projectId: project.id, category: 'capcut', description: 'Edición de video (gratuito)', amount: 0, currency: 'USD' },
+      { projectId: project.id, category: 'elevenlabs', description: 'TTS — voz del avatar', plannedAmount: 5, amount: 0, currency: 'USD' },
+      { projectId: project.id, category: 'flux', description: 'Generación de imágenes (incluido en z-ai-sdk)', plannedAmount: 0, amount: 0, currency: 'USD' },
+      { projectId: project.id, category: 'capcut', description: 'Edición de video (gratuito)', plannedAmount: 0, amount: 0, currency: 'USD' },
+      { projectId: project.id, category: 'kling_ai', description: 'Video con avatar animado — Solo si Fase 0 valida', plannedAmount: 15, amount: 0, currency: 'USD' },
+      { projectId: project.id, category: 'fanvue', description: 'Plataforma de suscripción — Solo si hay tracción', plannedAmount: 0, amount: 0, currency: 'USD' },
     ],
   })
 

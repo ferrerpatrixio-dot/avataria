@@ -144,14 +144,15 @@ model Metric {
 }
 
 model Budget {
-  id          String   @id @default(cuid())
-  projectId   String
-  category    String
-  description String?
-  amount      Float
-  currency    String   @default("USD")
-  spentAt     DateTime @default(now())
-  createdAt   DateTime @default(now())
+  id            String   @id @default(cuid())
+  projectId     String
+  category      String
+  description   String?
+  plannedAmount Float    @default(0) // Presupuesto estimado para esta herramienta
+  amount        Float    @default(0) // Gasto REAL — solo cuando se gasta de verdad
+  currency      String   @default("USD")
+  spentAt       DateTime? // Fecha real del gasto (null si aún no se ha gastado)
+  createdAt     DateTime @default(now())
   
   project Project @relation(fields: [projectId], references: [id])
 }
