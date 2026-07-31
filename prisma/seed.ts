@@ -140,11 +140,12 @@ async function main() {
     ],
   })
 
-  // Budgets
+  // Budgets (todos en $0 — son PRESUPUESTOS PLANIFICADOS, no gastos reales)
+  // Se actualizarán cuando realmente se gaste dinero
   await db.budget.createMany({
     data: [
-      { projectId: project.id, category: 'elevenlabs', description: 'Suscripción básica / créditos gratuitos', amount: 5, currency: 'USD' },
-      { projectId: project.id, category: 'flux', description: 'Generación de imagen estática base', amount: 0, currency: 'USD' },
+      { projectId: project.id, category: 'elevenlabs', description: 'TTS — Still not configured, $0 until Fase 0 validates', amount: 0, currency: 'USD' },
+      { projectId: project.id, category: 'flux', description: 'Generación de imagen estática base (incluido en z-ai-sdk)', amount: 0, currency: 'USD' },
       { projectId: project.id, category: 'capcut', description: 'Edición de video (gratuito)', amount: 0, currency: 'USD' },
     ],
   })
