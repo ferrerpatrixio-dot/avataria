@@ -19,8 +19,8 @@ async function main() {
   const project = await db.project.create({
     data: {
       name: 'AVATARIA',
-      avatarName: 'Leia',
-      description: 'Proyecto de Avatar IA: Leia — Amante del MMA y la tecnología. Sensual, inteligente, ingeniera de formación. Validación progresiva con enfoque Kill/Go para mercado mexicano y español.',
+      avatarName: 'Lexa',
+      description: 'Proyecto de Avatar: Lexa — Ingeniera, fanática del fútbol, MMA, música y cine. Cálida, inteligente, cercana. Validación progresiva con enfoque Kill/Go para mercado mexicano y español.',
       currentPhase: '0',
     },
   })
@@ -66,7 +66,7 @@ async function main() {
   await db.phaseTask.createMany({
     data: [
       { phaseId: phase0.id, title: 'Crear 3 variaciones de Hook (MMA, IA, Híbrida)', description: 'Escribir 3 guiones de 15 segundos', order: 0 },
-      { phaseId: phase0.id, title: 'Generar imagen estática de Leia con Flux', description: 'Una sola imagen de alta calidad en el gimnasio o frente a setup tech', order: 1 },
+      { phaseId: phase0.id, title: 'Generar imagen estática de Lexa con Flux', description: 'Una sola imagen de alta calidad en el gimnasio o frente a setup tech', order: 1 },
       { phaseId: phase0.id, title: 'Edición simple Low-Fi', description: 'Imagen estática + voz ElevenLabs + subtítulos CapCut + música tendencia', order: 2 },
       { phaseId: phase0.id, title: 'Publicar en TikTok e Instagram', description: 'Subir los 3 videos con etiquetas #IA #AvatarIA', order: 3 },
       { phaseId: phase0.id, title: 'Evaluar métricas Day 5', description: '¿Supera 500-1000 vistas orgánicas? ¿Hay comentarios?', order: 4 },
@@ -76,7 +76,7 @@ async function main() {
   // Phase 1 tasks
   await db.phaseTask.createMany({
     data: [
-      { phaseId: phase1.id, title: 'Refinar el Lore de Leia', description: 'Ajustar personalidad basado en comentarios de Fase 0', order: 0 },
+      { phaseId: phase1.id, title: 'Refinar el Lore de Lexa', description: 'Ajustar personalidad basado en comentarios de Fase 0', order: 0 },
       { phaseId: phase1.id, title: 'Pipeline de Video Real', description: 'Flux + LivePortrait o Kling AI, generar 5-7 videos', order: 1 },
       { phaseId: phase1.id, title: 'CTA Suave', description: '"Sígueme para la parte 2", "Comenta CÓDIGO para el prompt"', order: 2 },
       { phaseId: phase1.id, title: 'Configurar Link en Bio', description: 'Linktree gratuito -> Telegram/Discord/Formulario espera', order: 3 },
@@ -87,7 +87,7 @@ async function main() {
   // Phase 2 tasks
   await db.phaseTask.createMany({
     data: [
-      { phaseId: phase2.id, title: 'Configurar cuenta Fanvue', description: 'Crear cuenta, completar KYC, etiquetar como avatar IA', order: 0 },
+      { phaseId: phase2.id, title: 'Configurar cuenta Fanvue', description: 'Crear cuenta, completar KYC, preparar perfil de Lexa', order: 0 },
       { phaseId: phase2.id, title: 'Crear Oferta Irresistible de Lanzamiento', description: 'PPV o DM con análisis exclusivo por $3-5 USD', order: 1 },
       { phaseId: phase2.id, title: 'Configurar Embudo', description: 'TikTok/Reels -> Perfil(Link) -> Fanvue(DM)', order: 2 },
       { phaseId: phase2.id, title: 'Evaluar métricas Day 30', description: '¿5-10 suscriptores/pagos? ¿Conversión de seguidores a pagos?', order: 3 },
@@ -111,24 +111,31 @@ async function main() {
     data: [
       {
         projectId: project.id,
-        title: 'Hook Variación 1: Enfoque MMA (80%)',
+        title: 'Hook: Enfoque Fútbol (80%)',
+        type: 'hook_futbol',
+        content: 'Neta, el gol de Chicharito en el Mundial me sigue dando escalofríos. ¿A ti también? Porque si sí, ya somos familia.',
+        duration: '15s', tone: 'calido_cercano', variation: 1, status: 'draft', aiGenerated: true,
+      },
+      {
+        projectId: project.id,
+        title: 'Hook: Enfoque MMA (80%)',
         type: 'hook_mma',
-        content: '¿Viste la cachetada que le dio Adesanya a Pereira? Yo la vi venir desde el frame 47. No por nada, sino porque mi código de análisis biomecánico lo predijo. Sí, soy una IA que sabe más de peleas que tu compa del bar. Y no, no voy a disculparme.',
-        duration: '15s', tone: 'sarcastico_mexicano', variation: 1, status: 'draft', aiGenerated: true,
+        content: 'Vi esa sumisión de Alexa Grasso y grité tan fuerte que mi vecino tocó la puerta. ¿Tú también eres así cuando ves una pelea buena?',
+        duration: '15s', tone: 'calido_cercano', variation: 2, status: 'draft', aiGenerated: true,
       },
       {
         projectId: project.id,
-        title: 'Hook Variación 2: Enfoque IA/Programación (80%)',
-        type: 'hook_ai',
-        content: 'Mi creador me programó para analizar datos. Terminé analizando por qué tu código no compila y por qué el aguacate subió de precio. Spoiler: ambos tienen la misma raíz. ¿Quieres saber cuál? Sígueme y te cuento... si es que tu API de paciencia no arroja 500.',
-        duration: '15s', tone: 'sarcastico_mexicano', variation: 2, status: 'draft', aiGenerated: true,
+        title: 'Hook: Cultura — Música (80%)',
+        type: 'hook_cultura',
+        content: 'Estoy escuchando a Peso Pluma y de repente pensé: ¿cuál es la canción que te hace sentir invencible? La mía es Ella Baila Sola. Cuéntame la tuya.',
+        duration: '15s', tone: 'calido_cercano', variation: 3, status: 'draft', aiGenerated: true,
       },
       {
         projectId: project.id,
-        title: 'Hook Variación 3: Híbrida MMA/IA (50/50)',
+        title: 'Hook: Híbrida Fútbol/Tech (50/50)',
         type: 'hook_hybrid',
-        content: 'Me entrenaron con 10,000 horas de UFC y todo el stack de Python. Resultado: puedo predecir una sumisión mientras depuro tu backend. Tu entrenador personal cobra $200 la hora. Yo corro en GPU y nunca me canso. La pregunta no es si eres bueno, es si eres predecible.',
-        duration: '15s', tone: 'sarcastico_mexicano', variation: 3, status: 'draft', aiGenerated: true,
+        content: '¿Sabes qué tienen en común un buen gol y buen código? Que cuando funciona, se siente increíble. Y cuando falla... neta, quieres tirar la computadora. ¿O soy solo yo?',
+        duration: '15s', tone: 'calido_cercano', variation: 4, status: 'draft', aiGenerated: true,
       },
     ],
   })

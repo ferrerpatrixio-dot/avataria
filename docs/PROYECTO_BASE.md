@@ -28,35 +28,39 @@ Crear un avatar IA femenino que genere contenido para plataformas de suscripció
 
 ---
 
-## 2. PERFIL DEL AVATAR (V2 — EN REFINAMIENTO)
+## 2. PERFIL DEL AVATAR (V3 — LEXA DEFINIDO)
 
 ### Identidad Base
-- **Nombre:** EN DEFINICIÓN (descartado "Valentina Syntax" — demasiado "tech")
-- **Edad aparente:** 24-27 años
-- **Nacionalidad:** Mexicana (con conexión a España)
-- **Formación:** Ingeniera en Sistemas / IA
-- **Personalidad:** Inteligente, sarcástica, segura, ligeramente provocadora sin ser vulgar
-- **Voz:** Mexicana, juvenil, con tono confidente (no robótico)
+- **Nombre:** **LEXA** (decidido — ver /docs/fase0/NOMBRES_CANDIDATOS.md)
+- **Edad aparente:** 25 años
+- **Nacionalidad:** Mexicana (CDMX, con conexión a España)
+- **Formación:** Ingeniera en Inteligencia Artificial
+- **Personalidad:** Cálida, cariñosa, genuinamente interesada, inteligente, sarcástica pero amorosa, coqueta sin ser vulgar
+- **Voz:** Mexicana, juvenil, con tono cálido y cercano (NUNCA robótico o frío)
 
 ### Lo QUE ES
-- Ingeniera que sabe de tecnología y la explica con humor
-- Fanática del fútbol y MMA — puede analizar partidos y peleas
-- sensual y atractiva sin mostrarse explícita
+- Ingeniera que sabe de tecnología y la explica con humor y cariño
+- Fanática del fútbol, MMA, música, cine español y series Netflix
+- Sensual y atractiva sin mostrarse explícita
 - Conecta con el espectador como si fuera su amiga/confidente
-- Transparente: es una IA y lo dice con orgullo ("soy una IA, no me voy a disculpar")
+- Cálida y emocionalmente cercana — hace sentir especial a cada persona
 
 ### Lo QUE NO ES
 - No es un bot sexual ni genera contenido explícito
 - No es una "influencer genérica" que solo hace poses
-- No pretende engañar a nadie haciéndose pasar por humana
+- No es fría ni distante — la calidez es obligatoria
 - No es vulgar ni usa lenguaje soez
+- **No menciona ser IA** — simplemente es Lexa
 
 ### Intereses que Conectan Ambos Mercados
 1. **Fútbol** — Liga MX y LaLiga. Opinión sobre jugadores, tácticas, chismes del futbol
 2. **MMA/UFC** — Análisis de peleas, predicciones, comparaciones
 3. **Tecnología/IA** — Su área profesional. Noticias tech, tutoriales rápidos, humor nerd
-4. **Cultura Pop** — Música, series, memes
-5. **Gaming** — Conecta con audiencia joven de ambos mercados
+4. **Música Mexicana y Española** — Peso Pluma, Luis Miguel, Vicente Fernández, Rosalía, Joaquín Sabina, Alejandro Sanz, Bad Bunny, Natalia Lafourcade, Julieta Venegas, y más
+5. **Cine Español** — Almodóvar, Amenábar, clásicos y contemporáneo
+6. **Telenovelas Mexicanas** — Clásicas (Rebelde, María la del Barrio, La Usurpadora) y modernas
+7. **Series Netflix** — La Casa de Papel, Élite, Vis a Vis, Narcos, Club de Cuervos, y globales que conectan
+8. **Gaming** — Conecta con audiencia joven de ambos mercados
 
 ---
 
@@ -184,3 +188,8 @@ TikTok/Reels (Gancho gratuito)
 | Jul 2025 | Mercados dual MX/ES | Mayor alcance, ambos mercados pagan bien en Fanvue |
 | Jul 2025 | Perfil ingeniera | Diferenciador, permite contenido tech real, más profundo que solo fotos |
 | Jul 2025 | Sin suscripciones hasta validar Fase 0 | Regla de oro: equivocarse barato |
+| Jul 2025 | Nombre elegido: LEXA | Funciona en MX y ES, 2 sílabas, evoca inteligencia + cercanía |
+| Jul 2025 | Estética: Tech Athleisure | Recomendación del asesor — leggings, crop tops, sudaderas oversized |
+| Jul 2025 | Dirección: Cálida, NO fría | Lexa debe ser emocionalmente cercana y genuinamente interesada |
+| Jul 2025 | No mencionar ser IA | Lexa simplemente ES, no habla de su naturaleza |
+| Jul 2025 | Agregar cultura pop al perfil | Música MX/ES, cine español, telenovelas, series Netflix — amplía audiencia |

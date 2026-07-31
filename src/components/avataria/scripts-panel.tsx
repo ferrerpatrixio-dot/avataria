@@ -26,6 +26,8 @@ import {
   Code2,
   Shuffle,
   FileText,
+  Trophy,
+  Music,
 } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -48,9 +50,11 @@ interface ScriptsPanelProps {
 }
 
 const typeConfig: Record<string, { label: string; icon: React.ElementType; color: string }> = {
+  hook_futbol: { label: 'Fútbol 80%', icon: Trophy, color: 'text-green-400 bg-green-500/10' },
   hook_mma: { label: 'MMA 80%', icon: Flame, color: 'text-red-400 bg-red-500/10' },
   hook_ai: { label: 'IA 80%', icon: Code2, color: 'text-cyan-400 bg-cyan-500/10' },
   hook_hybrid: { label: 'Híbrida 50/50', icon: Shuffle, color: 'text-purple-400 bg-purple-500/10' },
+  hook_cultura: { label: 'Cultura 80%', icon: Music, color: 'text-pink-400 bg-pink-500/10' },
   full_script: { label: 'Script Completo', icon: FileText, color: 'text-amber-400 bg-amber-500/10' },
   custom: { label: 'Personalizado', icon: Sparkles, color: 'text-primary bg-primary/10' },
 }
@@ -133,7 +137,7 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
             <Bot className="w-4 h-4 text-primary" />
-            Generador de Guiones — Leia IA
+            Generador de Guiones — Lexa
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -145,11 +149,13 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="hook_mma">Flame — MMA 80%</SelectItem>
-                  <SelectItem value="hook_ai">Code2 — IA/Programación 80%</SelectItem>
-                  <SelectItem value="hook_hybrid">Shuffle — Híbrida 50/50</SelectItem>
-                  <SelectItem value="full_script">Script Completo (60s)</SelectItem>
-                  <SelectItem value="custom">Personalizado</SelectItem>
+                  <SelectItem value="hook_futbol">⚽ Fútbol 80%</SelectItem>
+                  <SelectItem value="hook_mma">🔥 MMA 80%</SelectItem>
+                  <SelectItem value="hook_ai">💻 IA/Programación 80%</SelectItem>
+                  <SelectItem value="hook_hybrid">🔀 Híbrida 50/50</SelectItem>
+                  <SelectItem value="hook_cultura">🎵 Cultura (Música/Cine/Series)</SelectItem>
+                  <SelectItem value="full_script">📝 Script Completo (60s)</SelectItem>
+                  <SelectItem value="custom">✨ Personalizado</SelectItem>
                 </SelectContent>
               </Select>
             </div>

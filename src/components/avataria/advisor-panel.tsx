@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Bot, Send, Trash2, MessageSquare, AlertTriangle, Lightbulb } from 'lucide-react'
+import { Bot, Send, Trash2, MessageSquare, AlertTriangle, Lightbulb, Sparkles } from 'lucide-react'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -13,9 +13,9 @@ interface Message {
 }
 
 const SUGGESTED_PROMPTS = [
-  '\xbfQu\xe9 tipo de contenido de Leia conectar\xeda mejor con la audiencia mexicana vs. espa\xf1ola?',
+  '\xbfQu\xe9 tipo de contenido de Lexa conectar\xeda mejor con la audiencia mexicana vs. espa\xf1ola?',
   '\xbfCu\xe1les son las diferencias culturales clave entre M\xe9xico y Espa\xf1a para este tipo de avatar?',
-  'Analiza el nombre "Leia" para el mercado mexicano y espa\xf1ol. \xbfEs el adecuado?',
+  'Analiza el nombre "Lexa" para el mercado mexicano y espa\xf1ol. \xbfEs el adecuado?',
   'Dame una estrategia de contenido para la Fase 0 en TikTok e Instagram',
   '\xbfQu\xe9 horarios y d\xedas son mejores para publicar en M\xe9xico y Espa\xf1a?',
   '\xbfC\xf3mo generar v\xednculo emocional sin recurrir a contenido sexual expl\xedcito?',
