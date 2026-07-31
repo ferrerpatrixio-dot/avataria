@@ -28,6 +28,7 @@ import {
   FileText,
   Trophy,
   Music,
+  Heart,
 } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -55,6 +56,7 @@ const typeConfig: Record<string, { label: string; icon: React.ElementType; color
   hook_ai: { label: 'IA 80%', icon: Code2, color: 'text-cyan-400 bg-cyan-500/10' },
   hook_hybrid: { label: 'Híbrida 50/50', icon: Shuffle, color: 'text-purple-400 bg-purple-500/10' },
   hook_cultura: { label: 'Cultura 80%', icon: Music, color: 'text-pink-400 bg-pink-500/10' },
+  hook_emocional: { label: 'Apoyo Emocional', icon: Heart, color: 'text-rose-400 bg-rose-500/10' },
   full_script: { label: 'Script Completo', icon: FileText, color: 'text-amber-400 bg-amber-500/10' },
   custom: { label: 'Personalizado', icon: Sparkles, color: 'text-primary bg-primary/10' },
 }
@@ -154,6 +156,7 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
                   <SelectItem value="hook_ai">💻 IA/Programación 80%</SelectItem>
                   <SelectItem value="hook_hybrid">🔀 Híbrida 50/50</SelectItem>
                   <SelectItem value="hook_cultura">🎵 Cultura (Música/Cine/Series)</SelectItem>
+                  <SelectItem value="hook_emocional">💝 Apoyo Emocional</SelectItem>
                   <SelectItem value="full_script">📝 Script Completo (60s)</SelectItem>
                   <SelectItem value="custom">✨ Personalizado</SelectItem>
                 </SelectContent>
