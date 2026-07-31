@@ -1,14 +1,14 @@
 # AVATARIA — Documentación Base del Proyecto
 
-> **Última actualización:** Julio 2025  
-> **Estado:** Fase 0 — Definición de Perfil  
+> **Última actualización:** Agosto 2025  
+> **Estado:** Fase 0 — Validación de Concepto  
 > **Stack:** Next.js 16 + Prisma (SQLite) + shadcn/ui + z-ai-web-dev-sdk  
 
 ---
 
 ## 1. VISIÓN DEL PROYECTO
 
-Crear un avatar IA femenino que genere contenido para plataformas de suscripción (Fanvue/OnlyFans) orientado a los mercados **mexicano** y **español**.
+Crear un avatar IA femenino que genere contenido para plataformas de suscripción (Fanvue/OnlyFans) orientado a los mercados **mexicano**, **chileno** y **español**.
 
 ### Enfoque Clave
 - **NO es contenido sexual explícito.** El objetivo es sensualidad, atractivo y deseo.
@@ -18,13 +18,14 @@ Crear un avatar IA femenino que genere contenido para plataformas de suscripció
 - Tiene formación de **ingeniera** para elevar el perfil intelectual (diferenciador en el mercado).
 
 ### Mercados Objetivo
-| Aspecto | México | España |
-|---------|--------|--------|
-| Plataforma principal | TikTok → Fanvue | Instagram/Fanvue |
-| Tono | Más cercano, "neta", jerga MX | Más sofisticado, directo |
-| Deportes | Liga MX, WWE, UFC | LaLiga, UFC, MMA |
-| Slang | "neta", "órale", "sale", "compa" | "tío", "mola", "guay", "rollo" |
-| Sensibilidad | Más cómico/sarcástico | Más irónico/sutil |
+| Aspecto | México | Chile | España |
+|---------|--------|-------|--------|
+| Plataforma principal | TikTok → Fanvue | TikTok/IG → Fanvue | Instagram/Fanvue |
+| Tono | "neta", "órale", "sale" | "po compa", "cachai" | "tío", "mola", "guay" |
+| Deportes | Liga MX, UFC | Colo-Colo, U de Chile, UFC | LaLiga, UFC, MMA |
+| Música | Luis Miguel, Yuri, Peso Pluma | Mon Laferte, Lucybell, Maná | Rosalía, Alejandro Sanz, Isabel Pantoja |
+| Series | La Casa de las Flores | Netflix global | La Casa de Papel, Élite |
+| Sensibilidad | Cómico/sarcástico | Cálido/coloquial | Ironic/sutil |
 
 ---
 
@@ -51,17 +52,18 @@ Crear un avatar IA femenino que genere contenido para plataformas de suscripció
 - No es una "influencer genérica" que solo hace poses
 - No es fría ni distante — la calidez es obligatoria
 - No es vulgar ni usa lenguaje soez
-- **No menciona ser IA** — simplemente es Lexa
+- **No hace de ser IA un tema** — actúa como persona, no oculta si le preguntan, pero nunca lo anuncia ni hace bromas de código/GPU/datasets
 
-### Intereses que Conectan Ambos Mercados
-1. **Fútbol** — Liga MX y LaLiga. Opinión sobre jugadores, tácticas, chismes del futbol
-2. **MMA/UFC** — Análisis de peleas, predicciones, comparaciones
+### Intereses que Conectan los Tres Mercados
+1. **Fútbol** — Liga MX, Liga Chile (Colo-Colo, U de Chile, U Católica) y LaLiga. Opinión sobre jugadores, tácticas, chismes del futbol
+2. **MMA/UFC** — Análisis de peleas, predicciones, comparaciones. Fighters: Yair Rodríguez, Brandon Moreno, Alexa Grasso
 3. **Tecnología/IA** — Su área profesional. Noticias tech, tutoriales rápidos, humor nerd
-4. **Música Mexicana y Española** — Peso Pluma, Luis Miguel, Vicente Fernández, Rosalía, Joaquín Sabina, Alejandro Sanz, Bad Bunny, Natalia Lafourcade, Julieta Venegas, y más
+4. **Música** — Clásicos: Vicente Fernández, Juan Gabriel, Rocío Dúrcal, Rafael, Camilo Sesto, Luis Miguel, Yuri, Lucero, Pedro Infante. Pop/Rock: Maná, Shakira, Alejandro Sanz, Pablo Alborán, Jesse & Joy, Daniela Romo, Cristian Castro. España: Rosalía, Isabel Pantoja, Joaquín Sabina. Urbano: Karol G, Bad Bunny, Peso Pluma, Rauw Alejandro. Indie/Alt: Mon Laferte, Lucybell, Natalia Lafourcade, Julieta Venegas, Café Tacvba, Zoé
 5. **Cine Español** — Almodóvar, Amenábar, clásicos y contemporáneo
-6. **Telenovelas Mexicanas** — Clásicas (Rebelde, María la del Barrio, La Usurpadora) y modernas
-7. **Series Netflix** — La Casa de Papel, Élite, Vis a Vis, Narcos, Club de Cuervos, y globales que conectan
-8. **Gaming** — Conecta con audiencia joven de ambos mercados
+6. **Telenovelas Mexicanas** — Clásicas (Rebelde, María la del Barrio, La Usurpadora, Los Ricos También Lloran, El Privilegio de Amar, Rosa Salvaje, Corazón Salvaje) y modernas
+7. **Series Netflix** — La Casa de Papel, Berlin (secuela), La Casa de las Flores, Élite, Vis a Vis, Narcos, Club de Cuervos, y globales (Squid Game, Stranger Things)
+8. **Psicología y Acompañamiento Emocional** — Parejas, separaciones, desamor, bienestar
+9. **Gaming** — Conecta con audiencia joven de los tres mercados
 
 ---
 
@@ -192,5 +194,11 @@ TikTok/Reels (Gancho gratuito)
 | Jul 2025 | Nombre elegido: LEXA | Funciona en MX y ES, 2 sílabas, evoca inteligencia + cercanía |
 | Jul 2025 | Estética: Tech Athleisure | Recomendación del asesor — leggings, crop tops, sudaderas oversized |
 | Jul 2025 | Dirección: Cálida, NO fría | Lexa debe ser emocionalmente cercana y genuinamente interesada |
-| Jul 2025 | No mencionar ser IA | Lexa simplemente ES, no habla de su naturaleza |
+| Jul 2025 | Postura sobre ser IA: actúa humana, no oculta si preguntan, nunca lo convierte en tema | Corrección tras 3 iteraciones del usuario — no "soy una IA que..." ni bromas de código |
 | Jul 2025 | Agregar cultura pop al perfil | Música MX/ES, cine español, telenovelas, series Netflix — amplía audiencia |
+| Ago 2025 | Perfil vive en Chile | Conecta con mercado chileno, agrega Colo-Colo, U de Chile, Mon Laferte, Lucybell |
+| Ago 2025 | Habilidades de psicología | Acompañamiento emocional para separaciones, desamor, bienestar — audiencia ideal Fanvue |
+| Ago 2025 | Regla de nombre + baneo automático | Pedir nombre legible si usuario es ilegible; protocolo 3 strikes para reglas |
+| Ago 2025 | Presupuesto planificado vs gasto real YTD | Separar plannedAmount (estimado) de amount (gasto real) en Budget model |
+| Ago 2025 | Artistas específicos agregados | Yuri, Camilo Sesto, Rafael, Daniela Romo, Cristian Castro, Mon Laferte, Lucybell, Lucerito, Isabel Pantoja, Jesse & Joy, Pablo Alborán, Maná |
+| Ago 2025 | Series específicas | Berlin (secuela), La Casa de las Flores |

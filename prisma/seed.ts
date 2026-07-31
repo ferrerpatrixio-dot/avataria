@@ -2,6 +2,19 @@ import { db } from '../src/lib/db'
 import { hash } from 'bcryptjs'
 
 async function main() {
+  // Clean existing data (order matters due to relations)
+  await db.metric.deleteMany()
+  await db.content.deleteMany()
+  await db.script.deleteMany()
+  await db.budget.deleteMany()
+  await db.decision.deleteMany()
+  await db.phaseTask.deleteMany()
+  await db.phase.deleteMany()
+  await db.project.deleteMany()
+  await db.user.deleteMany()
+
+  console.log('Cleared existing data')
+
   const hashedPassword = await hash('avataria2024', 10)
   const user = await db.user.upsert({
     where: { email: 'admin@avataria.com' },
