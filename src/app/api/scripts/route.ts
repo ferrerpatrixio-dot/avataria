@@ -17,13 +17,36 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { action, type, customPrompt, duration } = body
+    const { action, type, customPrompt, duration, trendingContext } = body
 
     const project = await db.project.findFirst({ where: { name: 'AVATARIA' } })
     if (!project) return NextResponse.json({ error: 'Proyecto no encontrado' }, { status: 404 })
 
     if (action === 'generate') {
       const zai = await ZAI.create()
+
+      // Auto-fetch trending context for sports hooks
+      let context = trendingContext || ''
+      if (!context && (type === 'hook_mma' || type === 'hook_futbol')) {
+        try {
+          const searchQuery = type === 'hook_mma'
+            ? 'UFC resultados pelea principal este sabado o ultima fecha julio 2025'
+            : 'partidos futbol internacional resultados este sabado o ultima fecha julio 2025'
+          const searchResults = await zai.functions.invoke('web_search', {
+            query: searchQuery,
+            num: 5,
+            recency_days: 7,
+          })
+          if (searchResults && searchResults.length > 0) {
+            context = searchResults
+              .slice(0, 5)
+              .map((r: { name: string; snippet: string }, i: number) => `${i + 1}. ${r.name}: ${r.snippet}`)
+              .join('\n')
+          }
+        } catch (searchErr) {
+          console.error('Trending search failed:', searchErr)
+        }
+      }
 
       const systemPrompt = `Eres Lexa, 25 años, mexicana, viviendo en Chile. Eres cálida, cariñosa, segura de ti misma y ligeramente coqueta sin ser vulgar. Hablas como alguien que está VIVIENDO las cosas en el momento — no como alguien que recuerda o analiza desde afuera. Tu tono es conversacional, directo, genuino. NUNCA gracioso, NUNCA sarcástico, NUNCA intentas hacer reír. Generas conexión emocional real: preguntas, te acuerdas, te preocupas.
 
@@ -68,15 +91,16 @@ Vives en Chile. Puedes comentar sobre la vida allí y la cultura chilena.
 Generas contenido para TikTok/Reels/Instagram. Tu objetivo: que cada suscriptor sienta que le importas de verdad. NO usas lenguaje soez. Eres la chica que ama los deportes, la música y conecta con la gente. Eres simplemente Lexa.`
 
       let userPrompt = ''
+      const contextBlock = context ? `\n\nCONTEXTO TRENDING ACTUAL (usa SOLO estos datos, son reales y de esta semana):\n${context}` : ''
       if (customPrompt) {
-        userPrompt = `Genera un hook de ${duration || '15'} segundos para TikTok/Reels con este enfoque: ${customPrompt}. REGLAS: Tiempo presente ("hoy", "acabo de", "estoy"). Tema trending (máx 1 semana). Termina con pregunta. Conversacional, directo, NUNCA gracioso ni sarcástico. Máximo 40 palabras. NO menciones ser IA.`
+        userPrompt = `Genera un hook de ${duration || '15'} segundos para TikTok/Reels con este enfoque: ${customPrompt}.${contextBlock} REGLAS: Tiempo presente ("hoy", "acabo de", "estoy"). Tema trending (máx 1 semana). Termina con pregunta. Conversacional, directo, NUNCA gracioso ni sarcástico. Máximo 40 palabras. NO menciones ser IA.`
       } else {
         const typePrompts: Record<string, string> = {
-          hook_futbol: `Escribe un hook de 15 segundos sobre un partido o noticia de fútbol que está pasando ESTA SEMANA. Usa tiempo presente. Menciona equipos y jugadores reales. La tendencia actual es Argentina (post-Mundial), pero también Liga MX o Liga Chile. Termina con pregunta. Conversacional, directo, sin sarcasmo. Máximo 40 palabras. NO menciones ser IA.`,
-          hook_mma: `Escribe un hook de 15 segundos sobre una pelea de UFC/MMA que es ESTA SEMANA o próxima. Usa tiempo presente. Menciona fighters reales — apoya a los latinos (Alexa Grasso, Brandon Moreno, Yair Rodríguez, Ignacio Bahamondes). Termina con pregunta. Emocionado pero NUNCA gracioso. Máximo 40 palabras. NO menciones ser IA.`,
-          hook_cultura: `Escribe un hook de 15 segundos sobre un concierto, lanzamiento musical, serie o película que es trending ESTA SEMANA. Menciona artistas reales. Si vive en Chile, menciona conciertos que vienen a Chile. Termina con pregunta. Conversacional, directo. Máximo 40 palabras. NO menciones ser IA.`,
+          hook_futbol: `Escribe un hook de 15 segundos sobre un partido o noticia de fútbol que está pasando ESTA SEMANA. Usa tiempo presente. Menciona equipos y jugadores reales de la cartelera actual. Termina con pregunta. Conversacional, directo, sin sarcasmo. Máximo 40 palabras. NO menciones ser IA.${contextBlock}`,
+          hook_mma: `Escribe un hook de 15 segundos sobre una pelea de UFC/MMA que fue ESTA SEMANA. Usa tiempo presente. Menciona los fighters y resultados REALES de la cartelera actual. Si hay un latino peleando, apóyalo con pasión (barrista). Si no hay latino, da tu opinión real sobre la pelea. Termina con pregunta. Emocionado pero NUNCA gracioso. Máximo 40 palabras. NO menciones ser IA.${contextBlock}`,
+          hook_cultura: `Escribe un hook de 15 segundos sobre un concierto, lanzamiento musical, serie o película que es trending ESTA SEMANA. Menciona artistas reales. Si vive en Chile, menciona conciertos que vienen a Chile. Termina con pregunta. Conversacional, directo. Máximo 40 palabras. NO menciones ser IA.${contextBlock}`,
           hook_emocional: `Escribe un hook de 15 segundos sobre emociones, atracción, desamor o bienestar. Puede ser coqueto y sugerente para captar atención — sin ser vulgar ni obvio. Termina con pregunta. Tono de esa chica que te entiende y te atrae un poco. Máximo 40 palabras. NO menciones ser IA.`,
-          full_script: `Escribe un guion completo de 60 segundos para TikTok de Lexa. Hook en presente (primeras 3 seg), desarrollo con una opinión real sobre algo trending (deporte, música o emocional), cierre con pregunta que invite a comentar. Conversacional, directo, sin sarcasmo ni humor forzado. Termina siempre con pregunta. NO menciones ser IA.`,
+          full_script: `Escribe un guion completo de 60 segundos para TikTok de Lexa. Hook en presente (primeras 3 seg), desarrollo con una opinión real sobre algo trending (deporte, música o emocional), cierre con pregunta que invite a comentar. Conversacional, directo, sin sarcasmo ni humor forzado. Termina siempre con pregunta. NO menciones ser IA.${contextBlock}`,
         }
         userPrompt = typePrompts[type] || typePrompts.hook_emocional
       }
