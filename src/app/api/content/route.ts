@@ -1,8 +1,43 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 import path from 'path'
+import { spawn } from 'child_process'
+import fs from 'fs'
 
-export async function GET() {
+export async function GET(request: Request) {
+  const url = new URL(request.url)
+  const checkJob = url.searchParams.get('checkJob')
+
+  if (checkJob) {
+    const resultPath = `/tmp/gen_result_${checkJob}.json`
+    if (fs.existsSync(resultPath)) {
+      try {
+        const data = JSON.parse(fs.readFileSync(resultPath, 'utf-8'))
+        fs.unlinkSync(resultPath)
+        if (data.error) return NextResponse.json({ status: 'error', error: data.error })
+        // Create DB record
+        const project = await db.project.findFirst({ where: { name: 'AVATARIA' } })
+        if (project && data.imageUrl) {
+          const content = await db.content.create({
+            data: {
+              projectId: project.id,
+              title: `Variación ${data.baseName} - ${new Date().toLocaleString('es-MX')}`,
+              type: 'static_image',
+              imageUrl: data.imageUrl,
+              prompt: data.prompt || 'variación natural',
+              status: 'review',
+            },
+          })
+          return NextResponse.json({ status: 'done', content, imageUrl: data.imageUrl })
+        }
+        return NextResponse.json({ status: 'done', ...data })
+      } catch {
+        return NextResponse.json({ status: 'pending' })
+      }
+    }
+    return NextResponse.json({ status: 'pending' })
+  }
+
   try {
     const contents = await db.content.findMany({
       include: { metrics: true, script: true },
@@ -13,6 +48,15 @@ export async function GET() {
     return NextResponse.json({ error: 'Error del servidor' }, { status: 500 })
   }
 }
+
+const ALLOWED = [
+  'leia-reference.png',
+  'leia-angle-frontal.png',
+  'leia-angle-34r.png',
+  'leia-angle-34l.png',
+  'leia-angle-profile.png',
+  'leia-angle-looking-up.png',
+]
 
 export async function POST(request: Request) {
   try {
@@ -29,10 +73,7 @@ export async function POST(request: Request) {
           projectId: project.id,
           title,
           type: type || 'static_image',
-          platform,
-          scriptId,
-          notes,
-          prompt,
+          platform, scriptId, notes, prompt,
           status: 'planned',
         },
       })
@@ -43,10 +84,7 @@ export async function POST(request: Request) {
       const { contentId, status } = body
       const content = await db.content.update({
         where: { id: contentId },
-        data: {
-          status,
-          publishedAt: status === 'published' ? new Date() : undefined,
-        },
+        data: { status, publishedAt: status === 'published' ? new Date() : undefined },
       })
       return NextResponse.json({ content })
     }
@@ -57,13 +95,8 @@ export async function POST(request: Request) {
         data: {
           contentId,
           platform: platform || 'tiktok',
-          views: views || 0,
-          likes: likes || 0,
-          comments: comments || 0,
-          shares: shares || 0,
-          saves: saves || 0,
-          clicks: clicks || 0,
-          followers: followers || 0,
+          views: views || 0, likes: likes || 0, comments: comments || 0,
+          shares: shares || 0, saves: saves || 0, clicks: clicks || 0, followers: followers || 0,
         },
       })
       return NextResponse.json({ metric })
@@ -71,33 +104,65 @@ export async function POST(request: Request) {
 
     if (action === 'generate_image') {
       const { prompt: imgPrompt, baseImage } = body
-
-      // Delegate to gen-service (port 3003) to avoid crashing Next.js
-      const genRes = await fetch('http://localhost:3003/?XTransformPort=3003', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: imgPrompt, baseImage }),
-      })
-      const genData = await genRes.json()
-
-      if (genData.error) {
-        return NextResponse.json({ error: genData.error }, { status: genRes.status || 500 })
+      const safeName = path.basename(baseImage || '')
+      if (!safeName || !ALLOWED.includes(safeName)) {
+        return NextResponse.json({ error: 'Imagen no permitida' }, { status: 400 })
       }
 
-      const content = await db.content.create({
-        data: {
-          projectId: project.id,
-          title: baseImage
-            ? `Variación desde ${path.basename(baseImage)} - ${new Date().toLocaleString('es-MX')}`
-            : `Imagen generada - ${new Date().toLocaleString('es-MX')}`,
-          type: 'static_image',
-          imageUrl: genData.imageUrl,
-          prompt: imgPrompt || 'variación natural',
-          status: 'review',
-        },
-      })
+      const jobId = Date.now().toString(36) + Math.random().toString(36).slice(2, 6)
+      const promptStr = (imgPrompt || 'same person, natural slight variation in expression and lighting, same vibe')
+        + '. NOT athletic, NOT muscular, NOT fighting pose. NO UFC, NO MMA, NO brand logos.'
 
-      return NextResponse.json({ content, imageUrl: genData.imageUrl })
+      const scriptPath = path.join(process.cwd(), '._gen_once.ts')
+      fs.writeFileSync(scriptPath, `
+import ZAI from 'z-ai-web-dev-sdk';
+import fs from 'fs';
+import path from 'path';
+
+const GEN_DIR = path.join(process.cwd(), 'public', 'generated-images');
+if (!fs.existsSync(GEN_DIR)) fs.mkdirSync(GEN_DIR, { recursive: true });
+
+async function run() {
+  try {
+    const zai = await ZAI.create();
+    const src = path.join(process.cwd(), 'public', '${safeName}');
+    const buf = fs.readFileSync(src);
+    const dataUrl = 'data:image/png;base64,' + buf.toString('base64');
+    const res = await zai.images.generations.edit({
+      prompt: ${JSON.stringify(promptStr)},
+      images: [{ url: dataUrl }],
+      size: '1024x1024',
+    });
+    const imgBuf = Buffer.from(res.data[0].base64, 'base64');
+    const filename = 'leia_' + Date.now() + '.png';
+    fs.writeFileSync(path.join(GEN_DIR, filename), imgBuf);
+    fs.writeFileSync('/tmp/gen_result_${jobId}.json', JSON.stringify({
+      imageUrl: '/generated-images/' + filename,
+      baseName: '${safeName}',
+      prompt: ${JSON.stringify(imgPrompt || 'variación natural')},
+    }));
+    console.log('DONE');
+  } catch(e: any) {
+    fs.writeFileSync('/tmp/gen_result_${jobId}.json', JSON.stringify({ error: String(e.message || e) }));
+    console.error('FAIL:', e);
+    process.exit(1);
+  }
+}
+run();
+`)
+
+      // Spawn as detached process
+      const child = spawn('bun', [scriptPath], {
+        detached: true,
+        stdio: 'ignore',
+        cwd: process.cwd(),
+      })
+      child.unref()
+
+      // Clean up temp script after a delay
+      setTimeout(() => { try { fs.unlinkSync(scriptPath) } catch {} }, 5000)
+
+      return NextResponse.json({ jobId, status: 'started' })
     }
 
     if (action === 'delete') {

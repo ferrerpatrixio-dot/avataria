@@ -119,7 +119,8 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const generateImage = async () => {
     setGenerating(true)
     try {
-      const res = await fetch('/api/content', {
+      // 1. Start generation job
+      const startRes = await fetch('/api/content', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -128,17 +129,48 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
           baseImage: selectedBase,
         }),
       })
-      const data = await res.json()
-      if (res.ok && data.imageUrl) {
-        toast.success('Variación generada')
-        onRefresh()
-      } else {
-        toast.error(data.error || 'Error generando imagen')
+      const startData = await startRes.json()
+      if (!startRes.ok || !startData.jobId) {
+        toast.error(startData.error || 'Error al iniciar generación')
+        setGenerating(false)
+        return
       }
+
+      // 2. Poll for result
+      let attempts = 0
+      const maxAttempts = 90 // 3 minutes
+      const poll = async (): Promise<void> => {
+        attempts++
+        if (attempts > maxAttempts) {
+          toast.error('Tiempo de espera agotado')
+          setGenerating(false)
+          return
+        }
+        try {
+          const checkRes = await fetch(`/api/content?checkJob=${startData.jobId}`)
+          const checkData = await checkRes.json()
+          if (checkData.status === 'done') {
+            toast.success('Variación generada')
+            onRefresh()
+            setGenerating(false)
+            return
+          }
+          if (checkData.status === 'error') {
+            toast.error(checkData.error || 'Error en generación')
+            setGenerating(false)
+            return
+          }
+          // Still pending
+          setTimeout(poll, 2000)
+        } catch {
+          setTimeout(poll, 3000)
+        }
+      }
+      setTimeout(poll, 3000) // First check after 3s
     } catch (e: any) {
       toast.error('Error: ' + (e.message || 'sin conexión'))
+      setGenerating(false)
     }
-    setGenerating(false)
   }
 
   const createContent = async () => {
@@ -295,7 +327,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
                 {generating ? (
                   <span className="flex items-center gap-2">
                     <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                    Generando...
+                    Procesando...
                   </span>
                 ) : (
                   <><Sparkles className="w-4 h-4 mr-1" /> Generar Variación</>
