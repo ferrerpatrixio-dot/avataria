@@ -92,6 +92,7 @@ const ALLOWED = [
   'leia-outfit8-halter-denim.png',
   'leia-outfit9-pink-shorts.png',
   'leia-outfit10-pink-scallop.png',
+  'leia-outfit11-white-halter-glass.png',
 ]
 
 export async function POST(request: Request) {

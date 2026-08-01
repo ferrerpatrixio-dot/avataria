@@ -166,6 +166,7 @@ const PHOTO_CATEGORIES = [
       { value: '/leia-outfit8-halter-denim.png', label: 'Halter denim' },
       { value: '/leia-outfit9-pink-shorts.png', label: 'Pink shorts' },
       { value: '/leia-outfit10-pink-scallop.png', label: 'Pink scallop' },
+      { value: '/leia-outfit11-white-halter-glass.png', label: 'White halter' },
     ],
   },
 ] as const
