@@ -104,6 +104,11 @@ const BASE_PHOTOS = [
   { value: '/leia-reel-braids.png', label: 'Dos trenzas + tiburón', score: '7.5/10' },
   { value: '/leia-reel-orange.png', label: 'Chamarra naranja, sonrisa', score: 'Nueva' },
   { value: '/leia-reference.png', label: '⭐ LEIA DEFINITIVA', score: '9/10' },
+  { value: '/leia-angle-frontal.png', label: 'Frontal', score: '9/10' },
+  { value: '/leia-angle-34r.png', label: '3/4 derecha', score: '9/10' },
+  { value: '/leia-angle-34l.png', label: '3/4 izquierda', score: '9/10' },
+  { value: '/leia-angle-profile.png', label: 'Perfil lateral', score: '9/10' },
+  { value: '/leia-angle-looking-up.png', label: 'Mirando arriba', score: '9/10' },
 ] as const
 
 export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
