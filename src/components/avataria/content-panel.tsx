@@ -248,12 +248,12 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
               <Sparkles className="w-4 h-4 mr-1 text-primary" /> Generar Imagen IA
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-card border-border max-w-md flex flex-col max-h-[85vh]">
-            <DialogHeader className="shrink-0">
+          <DialogContent className="bg-card border-border max-w-md !max-h-[80vh] !overflow-hidden !flex !flex-col">
+            <DialogHeader className="!shrink-0">
               <DialogTitle>Generar Imagen de Leia</DialogTitle>
               <DialogDescription>Crea variaciones a partir de las fotos limpias o genera desde cero</DialogDescription>
             </DialogHeader>
-            <div className="space-y-4 py-2 overflow-y-auto flex-1 min-h-0 pr-1">
+            <div className="space-y-3 py-2 overflow-y-auto flex-1 min-h-0 scrollbar-thin">
               {/* Base image toggle */}
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
