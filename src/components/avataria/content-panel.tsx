@@ -248,12 +248,12 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
               <Sparkles className="w-4 h-4 mr-1 text-primary" /> Generar Imagen IA
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-card border-border max-w-md">
-            <DialogHeader>
+          <DialogContent className="bg-card border-border max-w-md flex flex-col max-h-[85vh]">
+            <DialogHeader className="shrink-0">
               <DialogTitle>Generar Imagen de Leia</DialogTitle>
               <DialogDescription>Crea variaciones a partir de las fotos limpias o genera desde cero</DialogDescription>
             </DialogHeader>
-            <div className="space-y-4 py-4">
+            <div className="space-y-4 py-2 overflow-y-auto flex-1 min-h-0 pr-1">
               {/* Base image toggle */}
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
@@ -272,7 +272,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
               {useBaseImage && (
                 <div className="space-y-2">
                   <Label className="text-xs text-muted-foreground">Foto base</Label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-1.5">
                     {BASE_PHOTOS.map((photo) => (
                       <button
                         key={photo.value}
@@ -290,9 +290,9 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
                           className="w-full aspect-square object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-1.5">
-                          <p className="text-[10px] font-medium text-white leading-tight truncate">{photo.label}</p>
-                          <p className="text-[9px] text-white/60">{photo.score}</p>
+                        <div className="absolute bottom-0 left-0 right-0 p-1">
+                          <p className="text-[9px] font-medium text-white leading-tight truncate">{photo.label}</p>
+                          <p className="text-[8px] text-white/60">{photo.score}</p>
                         </div>
                       </button>
                     ))}
@@ -313,11 +313,11 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
                     : 'Prompt personalizado (opcional - se usa un prompt por defecto de Leia)'}
                   value={imgPrompt}
                   onChange={(e) => setImgPrompt(e.target.value)}
-                  rows={3}
+                  rows={2}
                 />
               </div>
             </div>
-            <DialogFooter>
+            <DialogFooter className="shrink-0 pt-2">
               <Button onClick={generateImage} disabled={generating}>
                 {generating ? (
                   <span className="flex items-center gap-2">
