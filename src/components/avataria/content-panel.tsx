@@ -404,8 +404,8 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
           return (
             <Card key={item.id} className="bg-card/60 hover:bg-card/80 transition-colors overflow-hidden">
               {item.imageUrl && (
-                <div className="aspect-video bg-background/30 overflow-hidden">
-                  <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />
+                <div className="bg-background/30 overflow-hidden flex items-center justify-center py-2 px-2">
+                  <img src={item.imageUrl} alt={item.title} className="w-full h-auto max-h-72 object-contain rounded-md" />
                 </div>
               )}
               <CardContent className="p-4 space-y-3">
