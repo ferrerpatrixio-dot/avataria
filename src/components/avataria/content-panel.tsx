@@ -95,21 +95,13 @@ const metricItems = [
   { key: 'followers', label: 'Followers', icon: Users, color: 'text-emerald-400' },
 ] as const
 
-const LEIA_ANGLES = [
-  { value: '/leia-reference.png', label: 'Definitiva', score: '9/10' },
-  { value: '/leia-angle-frontal.png', label: 'Frontal', score: '9/10' },
-  { value: '/leia-angle-34r.png', label: '3/4 derecha', score: '9/10' },
-  { value: '/leia-angle-34l.png', label: '3/4 izq.', score: '9/10' },
-  { value: '/leia-angle-profile.png', label: 'Perfil', score: '9/10' },
-  { value: '/leia-angle-looking-up.png', label: 'Arriba', score: '9/10' },
-] as const
-
-const SOURCE_PHOTOS = [
-  { value: '/leia-avatar.png', label: 'Hoodie', score: '9/10' },
-  { value: '/leia-reel-shark.png', label: 'Tiburón', score: '8.5/10' },
-  { value: '/leia-reel-pumpkin.png', label: 'Calabaza', score: '8/10' },
-  { value: '/leia-reel-braids.png', label: 'Trenzas', score: '7.5/10' },
-  { value: '/leia-reel-orange.png', label: 'Naranja', score: 'Nueva' },
+const LEIA_PHOTOS = [
+  { value: '/leia-reference.png', label: 'Definitiva' },
+  { value: '/leia-angle-frontal.png', label: 'Frontal' },
+  { value: '/leia-angle-34r.png', label: '3/4 der' },
+  { value: '/leia-angle-34l.png', label: '3/4 izq' },
+  { value: '/leia-angle-profile.png', label: 'Perfil' },
+  { value: '/leia-angle-looking-up.png', label: 'Arriba' },
 ] as const
 
 export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
@@ -122,7 +114,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const [newNotes, setNewNotes] = useState('')
   const [imgPrompt, setImgPrompt] = useState('')
   const [metrics, setMetrics] = useState<Record<string, string>>({})
-  const [selectedBase, setSelectedBase] = useState(LEIA_ANGLES[0].value)
+  const [selectedBase, setSelectedBase] = useState(LEIA_PHOTOS[0].value)
 
   const generateImage = async () => {
     setGenerating(true)
@@ -260,11 +252,11 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
               <DialogDescription>Selecciona un ángulo y describe qué cambiar</DialogDescription>
             </DialogHeader>
             <div className="space-y-3 py-2 overflow-y-auto flex-1 min-h-0 scrollbar-thin">
-              {/* Leia angles - primary */}
+              {/* Leia photos */}
               <div className="space-y-1.5">
-                <Label className="text-xs font-medium text-primary">Leia (ángulos)</Label>
+                <Label className="text-xs font-medium text-primary">Ángulo de Leia</Label>
                 <div className="grid grid-cols-3 gap-1.5">
-                  {LEIA_ANGLES.map((photo) => (
+                  {LEIA_PHOTOS.map((photo) => (
                     <button
                       key={photo.value}
                       type="button"
@@ -284,29 +276,6 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
                   ))}
                 </div>
               </div>
-
-              {/* Source photos - secondary */}
-              <details className="group">
-                <summary className="text-[11px] text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-                  + Fotos fuente originales ({SOURCE_PHOTOS.length})
-                </summary>
-                <div className="grid grid-cols-5 gap-1 mt-1.5">
-                  {SOURCE_PHOTOS.map((photo) => (
-                    <button
-                      key={photo.value}
-                      type="button"
-                      onClick={() => setSelectedBase(photo.value)}
-                      className={`relative rounded-md overflow-hidden border-2 transition-all ${
-                        selectedBase === photo.value
-                          ? 'border-primary ring-1 ring-primary/50'
-                          : 'border-border/40 hover:border-border'
-                      }`}
-                    >
-                      <img src={photo.value} alt={photo.label} className="w-full aspect-square object-cover" />
-                    </button>
-                  ))}
-                </div>
-              </details>
 
               {/* Prompt */}
               <div className="space-y-1">

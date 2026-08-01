@@ -96,16 +96,11 @@ export async function POST(request: Request) {
       if (baseImage) {
         // IMAGE-TO-IMAGE: read the base photo and use edit API
         const allowedBases = [
-          'leia-avatar.png',
-          'leia-reel-shark.png',
-          'leia-reel-pumpkin.png',
-          'leia-reel-braids.png',
-          'leia-reel-orange.png',
           'leia-reference.png',
           'leia-angle-frontal.png',
           'leia-angle-34r.png',
-          'leia-angle-profile.png',
           'leia-angle-34l.png',
+          'leia-angle-profile.png',
           'leia-angle-looking-up.png',
         ]
         const safeName = path.basename(baseImage)
