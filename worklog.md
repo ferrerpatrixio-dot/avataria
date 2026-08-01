@@ -141,3 +141,26 @@ Stage Summary:
 - Zero "Valentina" references remain in active docs
 - 2 clean avatar photos ready for publishing (no trademark issues)
 - Avatar visual profile extracted and documented in PERFIL_AVATAR.md
+---
+Task ID: 7
+Agent: main
+Task: Implementar image-to-image en el pipeline de contenido (usar foto limpia como base)
+
+Work Log:
+- Leído content-panel.tsx y /api/content/route.ts para entender estado actual
+- API solo soportaba text-to-image con zai.images.generations.create()
+- Modificado /api/content/route.ts: nueva lógica condicional que usa zai.images.generations.edit() cuando se pasa baseImage
+- Lista blanca de 4 fotos base permitidas (leia-avatar.png, leia-reel-shark.png, leia-reel-pumpkin.png, leia-reel-braids.png)
+- Seguridad: path.basename() para evitar path traversal
+- Modificado content-panel.tsx: Switch toggle "Usar foto como base" (activado por defecto)
+- Grid visual de 4 fotos base con preview, label y score
+- Prompt adaptativo: cuando hay base image, placeholder sugiere editar (ropa, fondo, expresión)
+- Toast de éxito diferenciado: "Variación generada" vs "Imagen generada"
+- Lint limpio, dev server compilando sin errores
+
+Stage Summary:
+- feature completa: image-to-image usando fotos limpias de Leia como base
+- API acepta baseImage param, lee archivo local, convierte a dataURL, usa edit API
+- UI: toggle + selector visual de 4 fotos + prompt contextual
+- ANTI_FIGHTER prompt se inyecta en ambos modos (text-to-image e image-to-image)
+
