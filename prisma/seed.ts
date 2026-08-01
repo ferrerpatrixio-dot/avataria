@@ -119,36 +119,36 @@ async function main() {
     ],
   })
 
-  // Scripts — hooks verificados con LLM (julio 2025)
+  // Scripts — hooks verificados con LLM (agosto 2026, datos reales)
   await db.script.createMany({
     data: [
       {
         projectId: project.id,
-        title: 'MMA — De Ridder vs Whittaker split decision',
+        title: 'MMA — D-Rod Rodriguez en UFC Belgrade (1 ago 2026)',
         type: 'hook_mma',
-        content: 'Acabo de ver esa pelea, qué tan cerrada... sentí que Whittaker lo merecía, pero ¡qué bueno para De Ridder seguir invicto! ¿Tú qué viste, quién crees que ganó?',
+        content: 'Acabo de ver que hoy la UFC está en Belgrado por primera vez y D-Rod, nuestro hermano mexicano-americano, pelea. ¡Vamos a apoyarlo con todo el corazón! ¿Quién más siente esa energía latina esta noche?',
+        duration: '15s', tone: 'barrista_conversacional', status: 'draft', aiGenerated: true,
+      },
+      {
+        projectId: project.id,
+        title: 'MMA — Ankalaev TKO Guskov R5 (25 jul 2026)',
+        type: 'hook_mma',
+        content: 'Acabo de ver esa pelea. Fue una dominación total, ¡qué potencia la de Ankalaev! Se vio venir ese TKO, Guskov no tuvo ninguna oportunidad. ¿No les parece que Ankalaev es el próximo contendiente indiscutible?',
         duration: '15s', tone: 'calido_cercano', status: 'draft', aiGenerated: true,
       },
       {
         projectId: project.id,
-        title: 'MMA — Holloway se retira con victoria',
-        type: 'hook_mma',
-        content: 'Acabo de ver el final de una era. Max Holloway, leyenda, se despide con una victoria increíble. Un retiro tan digno como su carrera. ¿No sientes ese respeto profundo al ver a un grande terminar así?',
+        title: 'Fútbol — Liga MX Jornada 3 (1 ago 2026)',
+        type: 'hook_futbol',
+        content: 'Hoy la Liga MX enciende la Jornada 3 con un clásico: León vs Pachuca. ¡Qué emoción! ¿Listo para ver el mejor fútbol de México?',
         duration: '15s', tone: 'calido_cercano', status: 'draft', aiGenerated: true,
       },
       {
         projectId: project.id,
-        title: 'MMA — Petr Yan vuelve a ganar',
+        title: 'MMA — Makhachev vs Garry UFC 330 (15 ago 2026)',
         type: 'hook_mma',
-        content: 'Acabo de ver a Petr Yan volver a ganar con esa determinación de ex campeón. Se siente esa energía en cada golpe. ¿Sientes esa misma emoción al verlo pelear?',
+        content: 'Se viene... una prueba de fuego para Garry. El invicto Makhachev es una montaña. Es la definición de presión. ¿Crees que el ritmo de Garry puede romper la maquinaria rusa?',
         duration: '15s', tone: 'calido_cercano', status: 'draft', aiGenerated: true,
-      },
-      {
-        projectId: project.id,
-        title: 'Emocional — Coqueto sugerente',
-        type: 'hook_emocional',
-        content: 'Hay un lenguaje entre nosotros que no necesita palabras... una complicidad que se siente como un toque suave en la piel. ¿Quieres saber lo que estoy pensando ahora?',
-        duration: '15s', tone: 'coqueto_cercano', status: 'draft', aiGenerated: true,
       },
     ],
   })

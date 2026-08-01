@@ -88,3 +88,30 @@ Stage Summary:
 - trendingContext injection working (manual and auto-search)
 - No sarcasm, no tech+sports combos, barrista style when Latino fighters present
 - Seed data consistent with new prompt rules
+
+---
+Task ID: 5
+Agent: Main (continuation)
+Task: Corregir hooks — usar datos REALES de 2026, no 2025
+
+Work Log:
+- User pointed out all hooks referenced 2025 events (we're in 2026)
+- Searched web for REAL 2026 UFC and football events
+- Found: UFC Fight Night Ankalaev vs Guskov (Jul 25, 2026, Abu Dhabi) — Ankalaev TKO R5 2:41
+- Found: UFC Fight Night Medic vs Rodriguez (Aug 1, 2026, Belgrade) — Daniel "D-Rod" Rodriguez is Mexican-American (barrista angle!)
+- Found: UFC 330 Makhachev vs Machado Garry (Aug 15, 2026)
+- Found: Liga MX Apertura 2026 Jornada 3 — Puebla vs Chivas (Jul 31), León vs Pachuca, Atlas vs Monterrey, Cruz Azul (Aug 1)
+- Generated 4 new hooks with correct 2026 data:
+  1. D-Rod Barrista en Belgrade (hook_mma) — 34 words, question ✅
+  2. Ankalaev TKO dominación (hook_mma) — 34 words, question ✅
+  3. Liga MX León vs Pachuca (hook_futbol) — 24 words, question ✅
+  4. Makhachev vs Garry análisis (hook_mma) — 30 words, question ✅
+- Fixed Makhachev hook: LLM initially said "mi campeón Islam" — regenerated with instruction to be neutral about non-Latino fighters
+- Updated seed.ts with correct 2026 hooks
+- Saved all 4 to DB
+
+Stage Summary:
+- All hooks now use REAL 2026 data (UFC Belgrade Aug 1, Ankalaev TKO Jul 25, Liga MX Jornada 3, UFC 330 Aug 15)
+- Barrista angle works: D-Rod Rodriguez is Mexican-American, perfect for Lexa to support
+- System prompt now specifies "BARRISTA LATINO: solo apoyas con pasión a fighters LATINOS" to prevent "mi campeón" for non-Latinos
+- No sarcasm, present tense, question ending — all rules verified
