@@ -1,8 +1,6 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
-import fs from 'fs'
 import path from 'path'
-import ZAI from 'z-ai-web-dev-sdk'
 
 export async function GET() {
   try {
@@ -73,68 +71,18 @@ export async function POST(request: Request) {
 
     if (action === 'generate_image') {
       const { prompt: imgPrompt, baseImage } = body
-      const zai = await ZAI.create()
 
-      const ANTI_FIGHTER = 'soft facial features, feminine jawline, slim shoulders, casual style, warm smile, girl-next-door vibe. NOT athletic, NOT muscular definition, NOT broad shoulders, NOT fighting pose. NO UFC, NO MMA, NO fighter, NO cage, NO octagon, NO gym setting, NO combat gear, NO brazilian flag colors, NO green and yellow palette, NO Venum, NO Reebok, NO brand logos on clothing.'
+      // Delegate to gen-service (port 3003) to avoid crashing Next.js
+      const genRes = await fetch('http://localhost:3003/?XTransformPort=3003', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: imgPrompt, baseImage }),
+      })
+      const genData = await genRes.json()
 
-      // Build prompt based on whether we're using a base image or generating from scratch
-      let fullPrompt: string
-      if (baseImage) {
-        // Image-to-image: prompt describes the EDIT/VARIATION to apply
-        fullPrompt = imgPrompt
-          ? `${imgPrompt}. ${ANTI_FIGHTER}`
-          : `Create a natural variation of this person with slightly different expression and lighting, same person, same vibe. ${ANTI_FIGHTER}`
-      } else {
-        // Text-to-image: full description from scratch
-        fullPrompt = imgPrompt
-          ? `${imgPrompt}. ${ANTI_FIGHTER}`
-          : `Photorealistic portrait of Leia, a stunning young Latina woman in her mid-20s with a confident warm smile. Dark wavy hair past shoulders, natural makeup. Wearing a casual fitted black hoodie with abstract white geometric patterns, no logos. Background: cozy modern apartment with warm ambient lighting. Girl-next-door energy, approachable, genuine warmth. ${ANTI_FIGHTER}`
+      if (genData.error) {
+        return NextResponse.json({ error: genData.error }, { status: genRes.status || 500 })
       }
-
-      let imageBase64: string
-
-      if (baseImage) {
-        // IMAGE-TO-IMAGE: read the base photo and use edit API
-        const allowedBases = [
-          'leia-reference.png',
-          'leia-angle-frontal.png',
-          'leia-angle-34r.png',
-          'leia-angle-34l.png',
-          'leia-angle-profile.png',
-          'leia-angle-looking-up.png',
-        ]
-        const safeName = path.basename(baseImage)
-        if (!allowedBases.includes(safeName)) {
-          return NextResponse.json({ error: 'Imagen base no permitida' }, { status: 400 })
-        }
-        const sourcePath = path.join(process.cwd(), 'public', safeName)
-        if (!fs.existsSync(sourcePath)) {
-          return NextResponse.json({ error: 'Imagen base no encontrada' }, { status: 404 })
-        }
-        const sourceBuffer = fs.readFileSync(sourcePath)
-        const mimeType = 'image/png'
-        const dataUrl = `data:${mimeType};base64,${sourceBuffer.toString('base64')}`
-
-        const response = await zai.images.generations.edit({
-          prompt: fullPrompt,
-          images: [{ url: dataUrl }],
-          size: '1024x1024',
-        })
-        imageBase64 = response.data[0]?.base64
-        if (!imageBase64) throw new Error('No se generó la imagen editada')
-      } else {
-        // TEXT-TO-IMAGE: generate from scratch
-        const response = await zai.images.generations.create({
-          prompt: fullPrompt,
-          size: '1024x1024',
-        })
-        imageBase64 = response.data[0]?.base64
-        if (!imageBase64) throw new Error('No se generó la imagen')
-      }
-
-      const filename = `leia_${Date.now()}.png`
-      const outputPath = path.join(process.cwd(), 'public', 'generated-images', filename)
-      fs.writeFileSync(outputPath, Buffer.from(imageBase64, 'base64'))
 
       const content = await db.content.create({
         data: {
@@ -143,13 +91,13 @@ export async function POST(request: Request) {
             ? `Variación desde ${path.basename(baseImage)} - ${new Date().toLocaleString('es-MX')}`
             : `Imagen generada - ${new Date().toLocaleString('es-MX')}`,
           type: 'static_image',
-          imageUrl: `/generated-images/${filename}`,
-          prompt: fullPrompt,
+          imageUrl: genData.imageUrl,
+          prompt: imgPrompt || 'variación natural',
           status: 'review',
         },
       })
 
-      return NextResponse.json({ content, imageUrl: `/generated-images/${filename}` })
+      return NextResponse.json({ content, imageUrl: genData.imageUrl })
     }
 
     if (action === 'delete') {

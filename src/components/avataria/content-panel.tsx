@@ -128,14 +128,16 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
           baseImage: selectedBase,
         }),
       })
-      if (res.ok) {
+      const data = await res.json()
+      if (res.ok && data.imageUrl) {
         toast.success('Variación generada')
         onRefresh()
       } else {
-        const err = await res.json().catch(() => ({}))
-        toast.error(err.error || 'Error generando imagen')
+        toast.error(data.error || 'Error generando imagen')
       }
-    } catch { toast.error('Error de conexión') }
+    } catch (e: any) {
+      toast.error('Error: ' + (e.message || 'sin conexión'))
+    }
     setGenerating(false)
   }
 
