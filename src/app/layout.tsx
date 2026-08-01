@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "AVATARIA - Lexa IA | Avatar para Fanvue México y España",
-  description: "Plataforma de gestión para avatar IA Lexa — Fanvue, fútbol, MMA y tecnología para México y España.",
+  title: "AVATARIA - Leia IA | Avatar para Fanvue México y España",
+  description: "Plataforma de gestión para avatar IA Leia — Fanvue, fútbol, MMA y tecnología para México y España.",
   icons: {
     icon: "/lexa-avatar.png",
   },

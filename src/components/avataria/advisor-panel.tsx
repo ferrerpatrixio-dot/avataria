@@ -13,9 +13,9 @@ interface Message {
 }
 
 const SUGGESTED_PROMPTS = [
-  '\xbfQu\xe9 tipo de contenido de Lexa conectar\xeda mejor con la audiencia mexicana vs. espa\xf1ola?',
+  '\xbfQu\xe9 tipo de contenido de Leia conectar\xeda mejor con la audiencia mexicana vs. espa\xf1ola?',
   '\xbfCu\xe1les son las diferencias culturales clave entre M\xe9xico y Espa\xf1a para este tipo de avatar?',
-  'Analiza el nombre "Lexa" para el mercado mexicano y espa\xf1ol. \xbfEs el adecuado?',
+  'Analiza el nombre "Leia" para el mercado mexicano y espa\xf1ol. \xbfEs el adecuado?',
   'Dame una estrategia de contenido para la Fase 0 en TikTok e Instagram',
   '\xbfQu\xe9 horarios y d\xedas son mejores para publicar en M\xe9xico y Espa\xf1a?',
   '\xbfC\xf3mo generar v\xednculo emocional sin recurrir a contenido sexual expl\xedcito?',

@@ -24,7 +24,7 @@ model User {
 model Project {
   id          String   @id @default(cuid())
   name        String   @default("AVATARIA")
-  avatarName  String   @default("Lexa")
+  avatarName  String   @default("Leia")
   description String?
   currentPhase String  @default("0")
   startedAt   DateTime @default(now())

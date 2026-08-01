@@ -32,8 +32,8 @@ async function main() {
   const project = await db.project.create({
     data: {
       name: 'AVATARIA',
-      avatarName: 'Lexa',
-      description: 'Proyecto de Avatar: Lexa — 25 años, mexicana viviendo en Chile. Fanática del fútbol, MMA, música y cine. Cálida, coqueta, segura. No sarcástica. Validación progresiva con enfoque Kill/Go para mercado mexicano, chileno y español.',
+      avatarName: 'Leia',
+      description: 'Proyecto de Avatar: Leia — 25 años, mexicana viviendo en Chile. Fanática del fútbol, MMA, música y cine. Cálida, coqueta, segura. No sarcástica. Validación progresiva con enfoque Kill/Go para mercado mexicano, chileno y español.',
       currentPhase: '0',
     },
   })
@@ -79,7 +79,7 @@ async function main() {
   await db.phaseTask.createMany({
     data: [
       { phaseId: phase0.id, title: 'Crear hooks con datos trending reales (MMA + Emocional)', description: 'Generar hooks con cartelera UFC/Fútbol actual y hooks coquetos', order: 0 },
-      { phaseId: phase0.id, title: 'Generar imagen estática de Lexa con Flux', description: 'Una sola imagen de alta calidad en el gimnasio o frente a setup tech', order: 1 },
+      { phaseId: phase0.id, title: 'Generar imagen estática de Leia con Flux', description: 'Una sola imagen de alta calidad en el gimnasio o frente a setup tech', order: 1 },
       { phaseId: phase0.id, title: 'Edición simple Low-Fi', description: 'Imagen estática + voz ElevenLabs + subtítulos CapCut + música tendencia', order: 2 },
       { phaseId: phase0.id, title: 'Publicar en TikTok e Instagram', description: 'Subir los videos con etiquetas de tendencia', order: 3 },
       { phaseId: phase0.id, title: 'Evaluar métricas Day 5', description: '¿Supera 500-1000 vistas orgánicas? ¿Hay comentarios?', order: 4 },
@@ -89,7 +89,7 @@ async function main() {
   // Phase 1 tasks
   await db.phaseTask.createMany({
     data: [
-      { phaseId: phase1.id, title: 'Refinar el Lore de Lexa', description: 'Ajustar personalidad basado en comentarios de Fase 0', order: 0 },
+      { phaseId: phase1.id, title: 'Refinar el Lore de Leia', description: 'Ajustar personalidad basado en comentarios de Fase 0', order: 0 },
       { phaseId: phase1.id, title: 'Pipeline de Video Real', description: 'Flux + LivePortrait o Kling AI, generar 5-7 videos', order: 1 },
       { phaseId: phase1.id, title: 'CTA Suave', description: '"Sígueme para la parte 2", "Comenta CÓDIGO para el prompt"', order: 2 },
       { phaseId: phase1.id, title: 'Configurar Link en Bio', description: 'Linktree gratuito -> Telegram/Discord/Formulario espera', order: 3 },
@@ -100,7 +100,7 @@ async function main() {
   // Phase 2 tasks
   await db.phaseTask.createMany({
     data: [
-      { phaseId: phase2.id, title: 'Configurar cuenta Fanvue', description: 'Crear cuenta, completar KYC, preparar perfil de Lexa', order: 0 },
+      { phaseId: phase2.id, title: 'Configurar cuenta Fanvue', description: 'Crear cuenta, completar KYC, preparar perfil de Leia', order: 0 },
       { phaseId: phase2.id, title: 'Crear Oferta Irresistible de Lanzamiento', description: 'PPV o DM con análisis exclusivo por $3-5 USD', order: 1 },
       { phaseId: phase2.id, title: 'Configurar Embudo', description: 'TikTok/Reels -> Perfil(Link) -> Fanvue(DM)', order: 2 },
       { phaseId: phase2.id, title: 'Evaluar métricas Day 30', description: '¿5-10 suscriptores/pagos? ¿Conversión de seguidores a pagos?', order: 3 },

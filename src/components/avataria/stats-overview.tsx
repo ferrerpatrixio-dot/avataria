@@ -49,7 +49,7 @@ export function StatsOverview({ stats, currentPhase }: StatsOverviewProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_oklch(0.72_0.19_150_/_0.08)_0%,_transparent_60%)]" />
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold mb-1">Lexa IA</h2>
+            <h2 className="text-2xl font-bold mb-1">Leia IA</h2>
             <p className="text-muted-foreground text-sm max-w-lg">
               Avatar IA: Ingeniera, fanática del fútbol y MMA. Mercadeo para Fanvue.
               Sensual sin ser explícita. México primero, después España.
@@ -106,7 +106,7 @@ export function StatsOverview({ stats, currentPhase }: StatsOverviewProps) {
           <div className="grid sm:grid-cols-3 gap-3">
             {[
               { q: '¿Fútbol + IA + sensualidad inteligente conecta?', status: currentPhase === '0' ? 'Validando...' : 'Pendiente' },
-              { q: '¿Lexa genera confianza y deseo para clic?', status: currentPhase === '1' ? 'Validando...' : currentPhase === '0' ? 'Pendiente' : 'Validado' },
+              { q: '¿Leia genera confianza y deseo para clic?', status: currentPhase === '1' ? 'Validando...' : currentPhase === '0' ? 'Pendiente' : 'Validado' },
               { q: '¿La audiencia mexicana pagará en Fanvue?', status: currentPhase === '2' ? 'Validando...' : 'Pendiente' },
             ].map((risk, i) => (
               <div key={i} className="flex items-start gap-2 p-3 rounded-lg bg-background/50">

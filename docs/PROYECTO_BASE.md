@@ -193,7 +193,7 @@ TikTok/Reels (Gancho gratuito)
 | Jul 2025 | Sin suscripciones hasta validar Fase 0 | Regla de oro: equivocarse barato |
 | Jul 2025 | Nombre elegido: LEXA | Funciona en MX y ES, 2 sílabas, evoca inteligencia + cercanía |
 | Jul 2025 | Estética: Tech Athleisure | Recomendación del asesor — leggings, crop tops, sudaderas oversized |
-| Jul 2025 | Dirección: Cálida, NO fría | Lexa debe ser emocionalmente cercana y genuinamente interesada |
+| Jul 2025 | Dirección: Cálida, NO fría | Leia debe ser emocionalmente cercana y genuinamente interesada |
 | Jul 2025 | Postura sobre ser IA: actúa humana, no oculta si preguntan, nunca lo convierte en tema | Corrección tras 3 iteraciones del usuario — no "soy una IA que..." ni bromas de código |
 | Jul 2025 | Agregar cultura pop al perfil | Música MX/ES, cine español, telenovelas, series Netflix — amplía audiencia |
 | Ago 2025 | Perfil vive en Chile | Conecta con mercado chileno, agrega Colo-Colo, U de Chile, Mon Laferte, Lucybell |
