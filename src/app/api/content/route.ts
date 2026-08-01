@@ -101,6 +101,7 @@ export async function POST(request: Request) {
           'leia-reel-pumpkin.png',
           'leia-reel-braids.png',
           'leia-reel-orange.png',
+          'leia-reference.png',
         ]
         const safeName = path.basename(baseImage)
         if (!allowedBases.includes(safeName)) {
