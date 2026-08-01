@@ -57,19 +57,25 @@ async function generate(body: any) {
 }
 
 const server = http.createServer(async (req, res) => {
-  if (req.method === 'POST' && req.url === '/') {
+  const url = new URL(req.url || '/', `http://localhost:${PORT}`)
+  if (req.method === 'POST' && url.pathname === '/') {
+    console.log('[gen-service] POST / received, processing...')
     try {
       const chunks: Buffer[] = []
       for await (const chunk of req) chunks.push(chunk)
       const body = JSON.parse(Buffer.concat(chunks).toString())
+      console.log('[gen-service] body:', JSON.stringify({ prompt: body.prompt, baseImage: body.baseImage }))
       const result = await generate(body)
+      console.log('[gen-service] result:', JSON.stringify(result))
       res.writeHead(result.error ? 400 : 200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify(result))
     } catch (e: any) {
+      console.error('[gen-service] ERROR:', e.message)
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ error: e.message }))
     }
   } else {
+    console.log('[gen-service] Unmatched:', req.method, req.url)
     res.writeHead(200)
     res.end('gen-service ok')
   }
