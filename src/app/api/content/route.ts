@@ -75,8 +75,11 @@ export async function POST(request: Request) {
       const { prompt: imgPrompt } = body
       const zai = await ZAI.create()
 
-      const fullPrompt = imgPrompt ||
-        'Photorealistic portrait of Leia, a stunning young Latina woman in her mid-20s with a confident sensual gaze. Dark wavy hair past shoulders, natural makeup with subtle smoky eye. Wearing a fitted black crop top and leather jacket. Background: modern MMA gym with neon accents. Cinematic lighting, warm rim light. Sony A7III, 85mm f/1.4. Editorial photography, attractive but classy, no nudity.'
+      const ANTI_FIGHTER = 'soft facial features, feminine jawline, slim shoulders, casual style, warm smile, girl-next-door vibe. NOT athletic, NOT muscular definition, NOT broad shoulders, NOT fighting pose. NO UFC, NO MMA, NO fighter, NO cage, NO octagon, NO gym setting, NO combat gear, NO brazilian flag colors, NO green and yellow palette, NO Venum, NO Reebok, NO brand logos on clothing.'
+
+      const fullPrompt = imgPrompt
+        ? `${imgPrompt}. ${ANTI_FIGHTER}`
+        : `Photorealistic portrait of Leia, a stunning young Latina woman in her mid-20s with a confident warm smile. Dark wavy hair past shoulders, natural makeup. Wearing a casual fitted black hoodie with abstract white geometric patterns, no logos. Background: cozy modern apartment with warm ambient lighting. Girl-next-door energy, approachable, genuine warmth. ${ANTI_FIGHTER}`
 
       const response = await zai.images.generations.create({
         prompt: fullPrompt,

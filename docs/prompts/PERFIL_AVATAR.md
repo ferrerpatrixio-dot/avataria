@@ -109,6 +109,58 @@ Leia NO es una experta fría que analiza datos. Es alguien que:
 - Ambas fotos procesadas para eliminar todas las marcas registradas (UFC, Venum, etc.)
 - Las fotos son **inspiración estética** — el avatar IA se genera con estas características como base
 
+### GAP IDENTIFICADO — Análisis de Fuente Visual
+
+> ⚠️ **Documento completo:** `/docs/fase0/ANALISIS_AVATAR_LEIA.md`
+
+La fuente de fotos es una luchadora MMA real brasileña. Existe una desconexión entre la fuente y el perfil objetivo:
+
+| Dimensión | Fuente (Real) | Perfil Objetivo (Leia) |
+|-----------|---------------|------------------------|
+| Nacionalidad | Brasileña | Mexicana |
+| Estilo de vida | Atleta de combate élite | Girl-next-door casual |
+| Físico | Alta definición muscular, mandíbula cuadrada | Contextura media, suave, accesible |
+| Expresión predominante | Intensidad competitiva, mirada desafiante | Calidez, sonrisa cómplice |
+| Contextos | Pesajes UFC, eventos MMA | Cafeterías, calles, ambientes cotidianos |
+
+**El fenotipo SÍ es compatible** (pasa por mexicana/latina en Chile), pero la energía y el físico necesitan mitigación.
+
+### Riesgos Visuales
+
+- 🔴 **Efecto Fighter:** Masa muscular en hombros/espalda. Si la IA aprende esto, Leia siempre se verá "muy fuerte". La mandíbula muy definida puede leerse como "dura".
+- 🟡 **Filtración Cultural:** Logos UFC pueden hacer que la IA incluya cages, luces de estadio en fondos. Paletas verdes-amarillas (bandera brasileña) indeseadas.
+- 🟠 **Disonancia Físico-Expresión:** "Cara de vecina + cuerpo de gladiador" genera efecto uncanny valley.
+
+### Prompts de Mitigación (OBLIGATORIOS en toda generación de imágenes)
+
+**Incluir siempre:**
+```
+soft facial features, feminine jawline, slim shoulders, casual style, warm smile, girl-next-door vibe, NOT athletic, NOT muscular definition, natural everyday lighting
+```
+
+**Negative prompts:**
+```
+UFC, MMA, fighter, muscular, aggressive expression, broad shoulders, competition, gym setting, brazilian flag, green and yellow, cage, octagon, fighting pose, combat gear, Venum, Reebok
+```
+
+### Fotos Prioritarias para Reels (ya procesadas sin marcas)
+
+| Prioridad | Archivo original | Se identifica por | Score |
+|-----------|-----------------|-------------------|-------|
+| 🥇 #1 | `images (8).jpg` | Hoodie negro, risa carcajada, micrófono → **`/public/leia-avatar.png`** | 9/10 |
+| 🥈 #2 | `images (5).jpg` | Sudadera naranja-blanca, peluche tiburón, cabello suelto | 8.5/10 |
+| 🥉 #3 | `images (4).jpg` | Calabaza naranja, outfit naranja calaveras, ring boxeo | 8/10 |
+| 4° | `images (6).jpg` | Dos trenzas, peluche tiburón, top negro, pendientes dorados | 7.5/10 |
+
+### Fotos DESCARTADAS (nunca usar en dataset)
+- `images (9).jpg` — Bandera brasileña verde-amarilla (contaminación cultural)
+- `images (1).jpg`, `images (3).jpg`, `images (10).jpg` — Demasiado agresivas/frías
+
+### Estrategia Visual Recomendada
+1. **Fase 1:** Usar solo las 4 fotos prioritarias, siempre con prompts de mitigación
+2. **Fase 2:** Buscar 10-15 fotos adicionales de fuente casual mexicana/latina (Opción B: mezcla 50/50)
+3. **Fase 3:** Evaluar si el avatar resulta "demasiado fit" y ajustar fuente
+
 ---
 
 ## 4. CONOCIMIENTOS TEMÁTICOS
