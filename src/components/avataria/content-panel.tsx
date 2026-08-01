@@ -139,6 +139,20 @@ const PHOTO_CATEGORIES = [
       { value: '/leia-life-perro.png', label: 'Con perrito' },
     ],
   },
+  {
+    title: 'Outfits (tus refs)',
+    photos: [
+      { value: '/leia-ref1-green-wall.png', label: 'Top verde' },
+      { value: '/leia-ref2-green-vest.png', label: 'Chaleco verde' },
+      { value: '/leia-ref3-orchid.png', label: 'Orquidea rojo' },
+      { value: '/leia-ref4-bed-curly.png', label: 'Cama rizado' },
+      { value: '/leia-ref5-bed-straight.png', label: 'Cama plano' },
+      { value: '/leia-ref6-car-leopard.png', label: 'Auto leopard' },
+      { value: '/leia-ref7-green-sequin.png', label: 'Lentejuelas' },
+      { value: '/leia-ref8-checkered.png', label: 'Cuadros crop' },
+      { value: '/leia-ref9-bed-wavy.png', label: 'Cama ondas' },
+    ],
+  },
 ] as const
 
 const ALL_PHOTOS = PHOTO_CATEGORIES.flatMap(c => c.photos)

@@ -73,6 +73,15 @@ const ALLOWED = [
   'leia-life-banio.png',
   'leia-life-serie.png',
   'leia-life-perro.png',
+  'leia-ref1-green-wall.png',
+  'leia-ref2-green-vest.png',
+  'leia-ref3-orchid.png',
+  'leia-ref4-bed-curly.png',
+  'leia-ref5-bed-straight.png',
+  'leia-ref6-car-leopard.png',
+  'leia-ref7-green-sequin.png',
+  'leia-ref8-checkered.png',
+  'leia-ref9-bed-wavy.png',
 ]
 
 export async function POST(request: Request) {
