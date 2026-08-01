@@ -95,15 +95,53 @@ const metricItems = [
   { key: 'followers', label: 'Followers', icon: Users, color: 'text-emerald-400' },
 ] as const
 
-const LEIA_PHOTOS = [
-  { value: '/leia-reference.png', label: 'Definitiva' },
-  { value: '/leia-angle-frontal.png', label: 'Frontal' },
-  { value: '/leia-angle-34r.png', label: '3/4 der' },
-  { value: '/leia-angle-34l.png', label: '3/4 izq' },
-  { value: '/leia-angle-profile.png', label: 'Perfil izq' },
-  { value: '/leia-angle-profile-right.png', label: 'Perfil der' },
-  { value: '/leia-angle-looking-up.png', label: 'Arriba' },
+const PHOTO_CATEGORIES = [
+  {
+    title: 'Ángulos base',
+    photos: [
+      { value: '/leia-reference.png', label: 'Definitiva' },
+      { value: '/leia-angle-frontal.png', label: 'Frontal' },
+      { value: '/leia-angle-34r.png', label: '3/4 der' },
+      { value: '/leia-angle-34l.png', label: '3/4 izq' },
+      { value: '/leia-angle-profile.png', label: 'Perfil izq' },
+      { value: '/leia-angle-profile-right.png', label: 'Perfil der' },
+      { value: '/leia-angle-looking-up.png', label: 'Arriba' },
+    ],
+  },
+  {
+    title: 'Expresiones',
+    photos: [
+      { value: '/leia-expr-calm.png', label: 'Tranquila' },
+      { value: '/leia-expr-soft-smile.png', label: 'Sonrisa' },
+      { value: '/leia-expr-playful.png', label: 'Traviesa' },
+      { value: '/leia-expr-serious.png', label: 'Seria' },
+      { value: '/leia-expr-smirk.png', label: 'Sonrisita' },
+      { value: '/leia-expr-laugh.png', label: 'Risa' },
+      { value: '/leia-expr-dreamy.png', label: 'Soñadora' },
+    ],
+  },
+  {
+    title: 'Fitness',
+    photos: [
+      { value: '/leia-fit-abs.png', label: 'Abdomen' },
+      { value: '/leia-fit-back.png', label: 'Espalda' },
+      { value: '/leia-fit-legs.png', label: 'Piernas' },
+      { value: '/leia-fit-full.png', label: 'Cuerpo completo' },
+    ],
+  },
+  {
+    title: 'Lifestyle',
+    photos: [
+      { value: '/leia-life-helado.png', label: 'Helado' },
+      { value: '/leia-life-pelo.png', label: 'Secando pelo' },
+      { value: '/leia-life-banio.png', label: 'Baño' },
+      { value: '/leia-life-serie.png', label: 'Serie mexicana' },
+      { value: '/leia-life-perro.png', label: 'Con perrito' },
+    ],
+  },
 ] as const
+
+const ALL_PHOTOS = PHOTO_CATEGORIES.flatMap(c => c.photos)
 
 export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const [generating, setGenerating] = useState(false)
@@ -115,7 +153,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const [newNotes, setNewNotes] = useState('')
   const [imgPrompt, setImgPrompt] = useState('')
   const [metrics, setMetrics] = useState<Record<string, string>>({})
-  const [selectedBase, setSelectedBase] = useState(LEIA_PHOTOS[0].value)
+  const [selectedBase, setSelectedBase] = useState(ALL_PHOTOS[0].value)
 
   const generateImage = async () => {
     setGenerating(true)
@@ -288,29 +326,31 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
             </DialogHeader>
             <div className="space-y-3 py-2 overflow-y-auto flex-1 min-h-0 scrollbar-thin">
               {/* Leia photos */}
-              <div className="space-y-1.5">
-                <Label className="text-xs font-medium text-primary">Ángulo de Leia</Label>
-                <div className="grid grid-cols-3 gap-1.5">
-                  {LEIA_PHOTOS.map((photo) => (
-                    <button
-                      key={photo.value}
-                      type="button"
-                      onClick={() => setSelectedBase(photo.value)}
-                      className={`relative rounded-md overflow-hidden border-2 transition-all ${
-                        selectedBase === photo.value
-                          ? 'border-primary ring-1 ring-primary/50'
-                          : 'border-border/40 hover:border-border'
-                      }`}
-                    >
-                      <img src={photo.value} alt={photo.label} className="w-full aspect-square object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 px-1 py-0.5">
-                        <p className="text-[8px] font-medium text-white truncate">{photo.label}</p>
-                      </div>
-                    </button>
-                  ))}
+              {PHOTO_CATEGORIES.map((cat) => (
+                <div key={cat.title} className="space-y-1.5">
+                  <Label className="text-xs font-medium text-primary">{cat.title}</Label>
+                  <div className="grid grid-cols-4 gap-1">
+                    {cat.photos.map((photo) => (
+                      <button
+                        key={photo.value}
+                        type="button"
+                        onClick={() => setSelectedBase(photo.value)}
+                        className={`relative rounded-md overflow-hidden border-2 transition-all ${
+                          selectedBase === photo.value
+                            ? 'border-primary ring-1 ring-primary/50'
+                            : 'border-border/40 hover:border-border'
+                        }`}
+                      >
+                        <img src={photo.value} alt={photo.label} className="w-full aspect-square object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 px-1 py-0.5">
+                          <p className="text-[7px] font-medium text-white truncate leading-tight">{photo.label}</p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ))}
 
               {/* Prompt */}
               <div className="space-y-1">
