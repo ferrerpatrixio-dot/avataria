@@ -35,9 +35,7 @@ import {
   Bookmark,
   MousePointer,
   Users,
-  ImageIcon,
 } from 'lucide-react'
-import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 
@@ -97,18 +95,21 @@ const metricItems = [
   { key: 'followers', label: 'Followers', icon: Users, color: 'text-emerald-400' },
 ] as const
 
-const BASE_PHOTOS = [
-  { value: '/leia-avatar.png', label: 'Perfil principal (hoodie, riendo)', score: '9/10' },
-  { value: '/leia-reel-shark.png', label: 'Suéter naranja + tiburón', score: '8.5/10' },
-  { value: '/leia-reel-pumpkin.png', label: 'Outfit naranja + calabaza', score: '8/10' },
-  { value: '/leia-reel-braids.png', label: 'Dos trenzas + tiburón', score: '7.5/10' },
-  { value: '/leia-reel-orange.png', label: 'Chamarra naranja, sonrisa', score: 'Nueva' },
-  { value: '/leia-reference.png', label: '⭐ LEIA DEFINITIVA', score: '9/10' },
+const LEIA_ANGLES = [
+  { value: '/leia-reference.png', label: 'Definitiva', score: '9/10' },
   { value: '/leia-angle-frontal.png', label: 'Frontal', score: '9/10' },
   { value: '/leia-angle-34r.png', label: '3/4 derecha', score: '9/10' },
-  { value: '/leia-angle-34l.png', label: '3/4 izquierda', score: '9/10' },
-  { value: '/leia-angle-profile.png', label: 'Perfil lateral', score: '9/10' },
-  { value: '/leia-angle-looking-up.png', label: 'Mirando arriba', score: '9/10' },
+  { value: '/leia-angle-34l.png', label: '3/4 izq.', score: '9/10' },
+  { value: '/leia-angle-profile.png', label: 'Perfil', score: '9/10' },
+  { value: '/leia-angle-looking-up.png', label: 'Arriba', score: '9/10' },
+] as const
+
+const SOURCE_PHOTOS = [
+  { value: '/leia-avatar.png', label: 'Hoodie', score: '9/10' },
+  { value: '/leia-reel-shark.png', label: 'Tiburón', score: '8.5/10' },
+  { value: '/leia-reel-pumpkin.png', label: 'Calabaza', score: '8/10' },
+  { value: '/leia-reel-braids.png', label: 'Trenzas', score: '7.5/10' },
+  { value: '/leia-reel-orange.png', label: 'Naranja', score: 'Nueva' },
 ] as const
 
 export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
@@ -121,8 +122,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const [newNotes, setNewNotes] = useState('')
   const [imgPrompt, setImgPrompt] = useState('')
   const [metrics, setMetrics] = useState<Record<string, string>>({})
-  const [useBaseImage, setUseBaseImage] = useState(true)
-  const [selectedBase, setSelectedBase] = useState(BASE_PHOTOS[0].value)
+  const [selectedBase, setSelectedBase] = useState(LEIA_ANGLES[0].value)
 
   const generateImage = async () => {
     setGenerating(true)
@@ -133,11 +133,11 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
         body: JSON.stringify({
           action: 'generate_image',
           prompt: imgPrompt || undefined,
-          baseImage: useBaseImage ? selectedBase : undefined,
+          baseImage: selectedBase,
         }),
       })
       if (res.ok) {
-        toast.success(useBaseImage ? 'Variación generada desde foto base' : 'Imagen de Leia generada')
+        toast.success('Variación generada')
         onRefresh()
       } else {
         const err = await res.json().catch(() => ({}))
@@ -256,74 +256,70 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
           </DialogTrigger>
           <DialogContent className="bg-card border-border max-w-md !max-h-[80vh] !overflow-hidden !flex !flex-col">
             <DialogHeader className="!shrink-0">
-              <DialogTitle>Generar Imagen de Leia</DialogTitle>
-              <DialogDescription>Crea variaciones a partir de las fotos limpias o genera desde cero</DialogDescription>
+              <DialogTitle>Generar Variación de Leia</DialogTitle>
+              <DialogDescription>Selecciona un ángulo y describe qué cambiar</DialogDescription>
             </DialogHeader>
             <div className="space-y-3 py-2 overflow-y-auto flex-1 min-h-0 scrollbar-thin">
-              {/* Base image toggle */}
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label className="text-sm font-medium flex items-center gap-1.5">
-                    <ImageIcon className="w-4 h-4 text-primary" />
-                    Usar foto como base
-                  </Label>
-                  <p className="text-[11px] text-muted-foreground">
-                    Image-to-image: mantiene la cara de Leia
-                  </p>
+              {/* Leia angles - primary */}
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-primary">Leia (ángulos)</Label>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {LEIA_ANGLES.map((photo) => (
+                    <button
+                      key={photo.value}
+                      type="button"
+                      onClick={() => setSelectedBase(photo.value)}
+                      className={`relative rounded-md overflow-hidden border-2 transition-all ${
+                        selectedBase === photo.value
+                          ? 'border-primary ring-1 ring-primary/50'
+                          : 'border-border/40 hover:border-border'
+                      }`}
+                    >
+                      <img src={photo.value} alt={photo.label} className="w-full aspect-square object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 px-1 py-0.5">
+                        <p className="text-[8px] font-medium text-white truncate">{photo.label}</p>
+                      </div>
+                    </button>
+                  ))}
                 </div>
-                <Switch checked={useBaseImage} onCheckedChange={setUseBaseImage} />
               </div>
 
-              {/* Base photo selector */}
-              {useBaseImage && (
-                <div className="space-y-2">
-                  <Label className="text-xs text-muted-foreground">Foto base</Label>
-                  <div className="grid grid-cols-3 gap-1.5">
-                    {BASE_PHOTOS.map((photo) => (
-                      <button
-                        key={photo.value}
-                        type="button"
-                        onClick={() => setSelectedBase(photo.value)}
-                        className={`relative rounded-lg overflow-hidden border-2 transition-all hover:scale-[1.02] ${
-                          selectedBase === photo.value
-                            ? 'border-primary ring-1 ring-primary/50'
-                            : 'border-border/50 hover:border-border'
-                        }`}
-                      >
-                        <img
-                          src={photo.value}
-                          alt={photo.label}
-                          className="w-full aspect-square object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-1">
-                          <p className="text-[9px] font-medium text-white leading-tight truncate">{photo.label}</p>
-                          <p className="text-[8px] text-white/60">{photo.score}</p>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
+              {/* Source photos - secondary */}
+              <details className="group">
+                <summary className="text-[11px] text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+                  + Fotos fuente originales ({SOURCE_PHOTOS.length})
+                </summary>
+                <div className="grid grid-cols-5 gap-1 mt-1.5">
+                  {SOURCE_PHOTOS.map((photo) => (
+                    <button
+                      key={photo.value}
+                      type="button"
+                      onClick={() => setSelectedBase(photo.value)}
+                      className={`relative rounded-md overflow-hidden border-2 transition-all ${
+                        selectedBase === photo.value
+                          ? 'border-primary ring-1 ring-primary/50'
+                          : 'border-border/40 hover:border-border'
+                      }`}
+                    >
+                      <img src={photo.value} alt={photo.label} className="w-full aspect-square object-cover" />
+                    </button>
+                  ))}
                 </div>
-              )}
+              </details>
 
               {/* Prompt */}
-              <div className="space-y-1.5">
-                <Label className="text-xs text-muted-foreground">
-                  {useBaseImage
-                    ? 'Prompt de edición (qué cambiar - ropa, fondo, expresión...)'
-                    : 'Prompt personalizado (opcional - se usa un prompt por defecto)'}
-                </Label>
+              <div className="space-y-1">
+                <Label className="text-[11px] text-muted-foreground">Qué cambiar (ropa, fondo, expresión...)</Label>
                 <Textarea
-                  placeholder={useBaseImage
-                    ? 'Ej: cambiar el fondo a un café acogedor, ropa roja, sonrisa tímida...'
-                    : 'Prompt personalizado (opcional - se usa un prompt por defecto de Leia)'}
+                  placeholder="Ej: red dress, restaurant, confident smile..."
                   value={imgPrompt}
                   onChange={(e) => setImgPrompt(e.target.value)}
                   rows={2}
                 />
               </div>
             </div>
-            <DialogFooter className="shrink-0 pt-2">
+            <DialogFooter className="!shrink-0 pt-2">
               <Button onClick={generateImage} disabled={generating}>
                 {generating ? (
                   <span className="flex items-center gap-2">
@@ -331,7 +327,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
                     Generando...
                   </span>
                 ) : (
-                  <><Sparkles className="w-4 h-4 mr-1" /> {useBaseImage ? 'Generar Variación' : 'Generar'}</>
+                  <><Sparkles className="w-4 h-4 mr-1" /> Generar Variación</>
                 )}
               </Button>
             </DialogFooter>
