@@ -7,17 +7,16 @@
 
 ## DECISIONES TOMADAS
 
-### 1. NOMBRE → **LEXA**
+### 1. NOMBRE → **LEIA**
 
-**Razón del asesor:**
-- Naia, Mila, Kira son muy comunes — no diferencian
-- Nova es genérico para el espacio IA
-- Vera suena madura, pierde la chispa joven
-- **Lexa** es corto, moderno, sonoridad tech (piensa en "Alexa" sin connotación de asistente)
-- Funciona como marca: **"Lexa IA"** o solo **"Lexa"**
-- Fácil de recordar, pronunciar, tiene toque de inteligencia y seguridad
+**Decisión del usuario:**
+- El usuario decidió directamente el nombre **LEIA**
+- Evoca calidez + fuerza
+- Funciona en México, Chile y España
+- 2 sílabas, fácil de recordar
+- No suena como nombre de bot
 
-**Decisión final: LEXA** ✅
+**Decisión final: LEIA** ✅
 
 ---
 

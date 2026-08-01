@@ -19,7 +19,7 @@
 ## Categoría C: Nombres que evocan tech + cercanía
 | Nombre | Pros | Contras | Nota MX | Nota ES |
 |--------|------|---------|---------|--------|
-| **Lexa** | Evoca "lexicon/code" + Alexa, tech pero femenino | Puede sonar a dispositivo Amazon | 7/10 | 8/10 |
+| **Leia** | Evoca calidez + fuerza, funciona en MX/CL/ES, decidido por el usuario | El asesor originalmente recomendó otro nombre | 10/10 | 10/10 |
 | **Nova** | Evoca "nuevo/innovación", fuerte, memorable | Un poco genérico | 8/10 | 8/10 |
 | **Kira** | Sonido fuerte, memorable, funciona en ambos mercados | Puede sonar japonés/anime | 7/10 | 7/10 |
 

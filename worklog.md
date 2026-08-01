@@ -115,3 +115,29 @@ Stage Summary:
 - Barrista angle works: D-Rod Rodriguez is Mexican-American, perfect for Lexa to support
 - System prompt now specifies "BARRISTA LATINO: solo apoyas con pasión a fighters LATINOS" to prevent "mi campeón" for non-Latinos
 - No sarcasm, present tense, question ending — all rules verified
+
+---
+Task ID: 6
+Agent: Main (continuation)
+Task: Rename Lexa → Leia across entire codebase + process avatar photo
+
+Work Log:
+- Found ALL Lexa/LEXA/Valentina references: 9 files total (src, docs, prisma)
+- Renamed in source code: layout.tsx icon path `/lexa-avatar.png` → `/leia-avatar.png`
+- Renamed in prisma: schema.prisma comment LEXA → LEIA (avatarName default was already "Leia")
+- Renamed in docs: PERFIL_AVATAR.md, PROYECTO_BASE.md, ASESOR_ANALISIS.md, NOMBRES_CANDIDATOS.md, asesor_respuesta.json
+- Fixed Valentina Syntax reference in PROYECTO_BASE.md decisions table
+- Processed 2 uploaded fighter photos to remove ALL trademarks (UFC, Venum):
+  1. Smiling with mic photo → /public/leia-avatar-clean.png → copied to /public/leia-avatar.png
+  2. Athletic determined photo → /public/leia-avatar-athletic.png
+- Both photos verified clean via VLM: NO logos, NO text, NO brands visible
+- Extracted facial characteristics via VLM analysis and added to PERFIL_AVATAR.md
+- Updated PERFIL_AVATAR.md section 3 with: confirmed facial features, estética tech athleisure + streetwear, available avatar files list
+- Note: ANALISIS_AVATAR_LEXA.md file was not received in this session (likely lost in previous context)
+- Verified HTML output: title shows "AVATARIA - Leia IA", favicon /leia-avatar.png, no Lexa anywhere
+
+Stage Summary:
+- Zero "Lexa" references remain in source code or active docs (only worklog.md historical)
+- Zero "Valentina" references remain in active docs
+- 2 clean avatar photos ready for publishing (no trademark issues)
+- Avatar visual profile extracted and documented in PERFIL_AVATAR.md

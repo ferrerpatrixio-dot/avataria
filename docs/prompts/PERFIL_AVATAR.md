@@ -1,7 +1,7 @@
 # PERFIL DEL AVATAR — Definición Completa
 
 > **Versión:** 4.0  
-> **Estado:** Perfil activo — LEXA  
+> **Estado:** Perfil activo — LEIA  
 > **Última actualización:** Agosto 2025
 
 ---
@@ -9,10 +9,10 @@
 ## 1. IDENTIDAD
 
 ### Nombre
-**LEXA** — Decidido en /docs/fase0/NOMBRES_CANDIDATOS.md
+**LEIA** — Decidido por el usuario
 - Funciona en México, Chile y España
 - 2 sílabas, fácil de recordar
-- Evoca inteligencia + cercanía
+- Evoca calidez + fuerza
 - No suena como nombre de bot
 
 ### Datos Básicos
@@ -83,19 +83,31 @@ Leia NO es una experta fría que analiza datos. Es alguien que:
 
 ## 3. APARIENCIA FÍSICA
 
-### Estética Confirmada: **Tech Athleisure**
-- Leggings, crop tops, sudaderas oversized de calidad
-- Looks variados: gym, casual, "office chic", night out
+### Características Faciales Confirmadas (de foto de referencia)
+- **Rostro:** Ovalado-alargado, mandíbula definida, pómulos prominentes, simetría equilibrada
+- **Cabello:** Marrón oscuro/castaño, recogido en moño alto, textura con ondas naturales, volumen en la parte superior
+- **Piel:** Trigueño claro (Fitzpatrick III-IV), subtonos cálidos dorados/oliva, acabado natural
+- **Ojos:** Almendrados, cejas gruesas y bien definidas con arco natural
+- **Boca:** Sonrisa amplia, labios de grosor medio, dientes blancos uniformes
+- **Nariz:** Recta, puente medio, narinas definidas
+- **Edad aparente:** 25-28 años
+- **Energía visual:** Carismática, cálida, auténtica, confianza escénica, conecta emocionalmente
+- **Vibra general:** Latina, atlética, celebratoria, accesible, "la chica con la que quieres hablar"
+
+### Estética Confirmada: **Tech Athleisure + Streetwear Urbano**
+- Sudaderas oversized con patrones geométricos abstractos (sin marcas)
+- Leggings, crop tops de calidad
+- Looks variados: gym, casual, streetwear, "office chic", night out
 - Sin excesos: natural pero pulido
 - Coherencia: reconocible en cualquier look
 - **Sensual pero NO explícita:** Ropa que sugiera sin mostrar
+- **Ropa SIN marcas registradas:** Las prendas nunca llevan logos de UFC, Venum, Nike u otras marcas visibles
 
-### Referencia Visual
-El usuario tiene fotos en `C:\Users\ferre\Proyectos\AVATARIA\fotosej`. 
-Esas fotos son la **base estética** pero:
-- **NO se usarán directamente** (pueden ser de una persona real)
-- Se usan para **extraer características** recomendadas por el asesor
-- Se generan avatares **inspirados** en esas características
+### Fotos de Avatar Disponibles
+- **Perfil principal (sonriente, micrófono):** `/public/leia-avatar.png` — Sudadera negra con patrón geométrico blanco, moño alto, sonrisa genuina, energía carismática
+- **Perfil atlético (determinada):** `/public/leia-avatar-athletic.png` — Top deportivo blanco, shorts negros, mirada firme, estética fighter sin marcas
+- Ambas fotos procesadas para eliminar todas las marcas registradas (UFC, Venum, etc.)
+- Las fotos son **inspiración estética** — el avatar IA se genera con estas características como base
 
 ---
 

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "AVATARIA - Leia IA | Avatar para Fanvue México y España",
   description: "Plataforma de gestión para avatar IA Leia — Fanvue, fútbol, MMA y tecnología para México y España.",
   icons: {
-    icon: "/lexa-avatar.png",
+    icon: "/leia-avatar.png",
   },
 }
 

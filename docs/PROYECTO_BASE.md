@@ -29,10 +29,10 @@ Crear un avatar IA femenino que genere contenido para plataformas de suscripció
 
 ---
 
-## 2. PERFIL DEL AVATAR (V4 — LEXA ACTIVA)
+## 2. PERFIL DEL AVATAR (V4 — LEIA ACTIVA)
 
 ### Identidad Base
-- **Nombre:** **LEXA** (decidido — ver /docs/fase0/NOMBRES_CANDIDATOS.md)
+- **Nombre:** **LEIA** (decidido por el usuario)
 - **Edad aparente:** 25 años
 - **Nacionalidad:** Mexicana (CDMX)
 - **Residencia actual:** **Chile** (conecta con audiencia chilena también)
@@ -153,7 +153,7 @@ TikTok/Reels (Gancho gratuito)
 │       ├── PROTOCOLO_FOTOS.md
 │       └── VALIDACION.md
 ├── public/
-│   ├── valentina-avatar.png   # Imagen generada del avatar
+│   ├── leia-avatar.png        # Imagen generada del avatar
 │   └── generated-images/      # Imágenes generadas dinámicamente
 └── db/custom.db               # Base de datos SQLite
 ```
@@ -186,12 +186,12 @@ TikTok/Reels (Gancho gratuito)
 
 | Fecha | Decisión | Razón |
 |-------|----------|--------|
-| Jul 2025 | Descartado "Valentina Syntax" | Demasiado orientado a tech, no conecta con mercados objetivo |
+| Jul 2025 | Descartado "Valentina Syntax" | Demasiado orientado a tech, no conecta con mercados objetivo — se eligió LEIA en su lugar |
 | Jul 2025 | Enfoque sensual no explícito | Mayor audiencia, mejor monetización a largo plazo, menos riesgos de plataforma |
 | Jul 2025 | Mercados dual MX/ES | Mayor alcance, ambos mercados pagan bien en Fanvue |
 | Jul 2025 | Perfil ingeniera | Diferenciador, permite contenido tech real, más profundo que solo fotos |
 | Jul 2025 | Sin suscripciones hasta validar Fase 0 | Regla de oro: equivocarse barato |
-| Jul 2025 | Nombre elegido: LEXA | Funciona en MX y ES, 2 sílabas, evoca inteligencia + cercanía |
+| Jul 2025 | Nombre elegido: LEIA | Decisión del usuario — calidez + fuerza, funciona en MX, CL y ES |
 | Jul 2025 | Estética: Tech Athleisure | Recomendación del asesor — leggings, crop tops, sudaderas oversized |
 | Jul 2025 | Dirección: Cálida, NO fría | Leia debe ser emocionalmente cercana y genuinamente interesada |
 | Jul 2025 | Postura sobre ser IA: actúa humana, no oculta si preguntan, nunca lo convierte en tema | Corrección tras 3 iteraciones del usuario — no "soy una IA que..." ni bromas de código |

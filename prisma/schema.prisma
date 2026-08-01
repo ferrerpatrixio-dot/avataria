@@ -1,5 +1,5 @@
 // AVATARIA - AI Avatar Project Management System
-// LEXA: Fútbol + MMA + Música + Cine + Psicología — Mercados MX, CL, ES
+// LEIA: Fútbol + MMA + Música + Cine + Psicología — Mercados MX, CL, ES
 
 generator client {
   provider = "prisma-client-js"
