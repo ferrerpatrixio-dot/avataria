@@ -30,3 +30,25 @@ Stage Summary:
 - Generated images saved to /public/generated-images/leia_{timestamp}.png
 - Admin credentials reset: admin@avataria.com / admin123
 - Cleaned up mini-services directory and start-all.sh
+
+---
+Task ID: 1
+Agent: main
+Task: Cambiar pipeline a object-contain para mostrar fotos completas + generar 10 nuevos outfit photos
+
+Work Log:
+- Cambié content-panel.tsx: de aspect-video + object-cover a object-contain + max-h-72 para mostrar fotos completas sin recortar
+- Analicé 10 fotos de referencia de outfits con VLM para extraer detalles de ropa, pose, pelo y fondo
+- Escribí script de batch generation (._batch_gen.ts) que genera 10 fotos image-to-image con Leia como base
+- Ejecuté batch como detached spawn, las 10 se generaron exitosamente (~2.5 min)
+- Limpié 7 archivos de outfits viejos del session anterior
+- Actualicé ALLOWED whitelist en route.ts con los 10 nuevos archivos
+- Agregué categoría 'Outfits (nuevos)' al PHOTO_CATEGORIES en content-panel.tsx
+- Inserté 10 registros en la DB (total ahora: 49 contents)
+- Verifié con browser + VLM que las 10 fotos nuevas aparecen completas en el pipeline
+
+Stage Summary:
+- Fotos completas sin recortar: object-contain funciona correctamente
+- 10 nuevos outfits generados: pool sparkle, corset jeans, gingham, grey crop, floral cami, bathroom shirt, white bikini, halter denim, pink shorts, pink scallop
+- Pipeline total: 49 registros (23 base + 9 ref anteriores + 10 outfits nuevos + 7 variaciones antiguas)
+- Todas las fotos visibles y seleccionables como base para Generar Imagen IA

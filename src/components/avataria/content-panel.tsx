@@ -140,7 +140,7 @@ const PHOTO_CATEGORIES = [
     ],
   },
   {
-    title: 'Outfits (tus refs)',
+    title: 'Outfits (refs anteriores)',
     photos: [
       { value: '/leia-ref1-green-wall.png', label: 'Top verde' },
       { value: '/leia-ref2-green-vest.png', label: 'Chaleco verde' },
@@ -151,6 +151,21 @@ const PHOTO_CATEGORIES = [
       { value: '/leia-ref7-green-sequin.png', label: 'Lentejuelas' },
       { value: '/leia-ref8-checkered.png', label: 'Cuadros crop' },
       { value: '/leia-ref9-bed-wavy.png', label: 'Cama ondas' },
+    ],
+  },
+  {
+    title: 'Outfits (nuevos)',
+    photos: [
+      { value: '/leia-outfit1-pool-sparkle.png', label: 'Pool sparkle' },
+      { value: '/leia-outfit2-corset-jeans.png', label: 'Corset jeans' },
+      { value: '/leia-outfit3-gingham-corset.png', label: 'Gingham' },
+      { value: '/leia-outfit4-grey-crop-shorts.png', label: 'Grey crop' },
+      { value: '/leia-outfit5-floral-camisole.png', label: 'Floral cami' },
+      { value: '/leia-outfit6-bathroom-shirt.png', label: 'Bathroom' },
+      { value: '/leia-outfit7-white-bikini.png', label: 'White bikini' },
+      { value: '/leia-outfit8-halter-denim.png', label: 'Halter denim' },
+      { value: '/leia-outfit9-pink-shorts.png', label: 'Pink shorts' },
+      { value: '/leia-outfit10-pink-scallop.png', label: 'Pink scallop' },
     ],
   },
 ] as const

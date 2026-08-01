@@ -82,6 +82,16 @@ const ALLOWED = [
   'leia-ref7-green-sequin.png',
   'leia-ref8-checkered.png',
   'leia-ref9-bed-wavy.png',
+  'leia-outfit1-pool-sparkle.png',
+  'leia-outfit2-corset-jeans.png',
+  'leia-outfit3-gingham-corset.png',
+  'leia-outfit4-grey-crop-shorts.png',
+  'leia-outfit5-floral-camisole.png',
+  'leia-outfit6-bathroom-shirt.png',
+  'leia-outfit7-white-bikini.png',
+  'leia-outfit8-halter-denim.png',
+  'leia-outfit9-pink-shorts.png',
+  'leia-outfit10-pink-scallop.png',
 ]
 
 export async function POST(request: Request) {
