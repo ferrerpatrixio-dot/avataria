@@ -100,7 +100,8 @@ const LEIA_PHOTOS = [
   { value: '/leia-angle-frontal.png', label: 'Frontal' },
   { value: '/leia-angle-34r.png', label: '3/4 der' },
   { value: '/leia-angle-34l.png', label: '3/4 izq' },
-  { value: '/leia-angle-profile.png', label: 'Perfil' },
+  { value: '/leia-angle-profile.png', label: 'Perfil izq' },
+  { value: '/leia-angle-profile-right.png', label: 'Perfil der' },
   { value: '/leia-angle-looking-up.png', label: 'Arriba' },
 ] as const
 

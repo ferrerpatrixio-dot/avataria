@@ -55,6 +55,7 @@ const ALLOWED = [
   'leia-angle-34r.png',
   'leia-angle-34l.png',
   'leia-angle-profile.png',
+  'leia-angle-profile-right.png',
   'leia-angle-looking-up.png',
 ]
 
