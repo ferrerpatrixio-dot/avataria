@@ -102,6 +102,7 @@ const BASE_PHOTOS = [
   { value: '/leia-reel-shark.png', label: 'Suéter naranja + tiburón', score: '8.5/10' },
   { value: '/leia-reel-pumpkin.png', label: 'Outfit naranja + calabaza', score: '8/10' },
   { value: '/leia-reel-braids.png', label: 'Dos trenzas + tiburón', score: '7.5/10' },
+  { value: '/leia-reel-orange.png', label: 'Chamarra naranja, sonrisa', score: 'Nueva' },
 ] as const
 
 export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
