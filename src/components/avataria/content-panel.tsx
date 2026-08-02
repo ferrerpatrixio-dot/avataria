@@ -35,6 +35,8 @@ import {
   Bookmark,
   MousePointer,
   Users,
+  Download,
+  PackageOpen,
 } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
@@ -325,10 +327,43 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
     onRefresh()
   }
 
+  const downloadPhoto = async (url: string, title: string) => {
+    try {
+      const res = await fetch(url)
+      const blob = await res.blob()
+      const a = document.createElement('a')
+      a.href = URL.createObjectURL(blob)
+      a.download = title.replace(/[^a-zA-Z0-9áéíóúñÁÉÍÓÚÑ\- ]/g, '').replace(/\s+/g, '_') + '.png'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(a.href)
+    } catch {
+      window.open(url, '_blank')
+    }
+  }
+
+  const downloadAllPhotos = async () => {
+    const imageContents = contents.filter(c => c.imageUrl)
+    toast.info(`Descargando ${imageContents.length} fotos...`)
+    for (let i = 0; i < imageContents.length; i++) {
+      const item = imageContents[i]
+      if (item.imageUrl) {
+        await downloadPhoto(item.imageUrl, item.title)
+        await new Promise(r => setTimeout(r, 300))
+      }
+    }
+    toast.success(`${imageContents.length} fotos descargadas`)
+  }
+
   return (
     <div className="space-y-6">
       {/* Actions */}
       <div className="flex flex-wrap gap-3">
+        <Button size="sm" variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10" onClick={downloadAllPhotos}>
+          <PackageOpen className="w-4 h-4 mr-1" /> Descargar Todas (HeyGen)
+        </Button>
+
         <Dialog open={showCreate} onOpenChange={setShowCreate}>
           <DialogTrigger asChild>
             <Button size="sm">
@@ -523,6 +558,11 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
                   {item.status === 'planned' && <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => updateStatus(item.id, 'in_production')}>Producción</Button>}
                   {item.status === 'in_production' && <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => updateStatus(item.id, 'review')}>Revisión</Button>}
                   {item.status === 'review' && <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => updateStatus(item.id, 'published')}>Publicar</Button>}
+                  {item.imageUrl && (
+                    <Button size="sm" variant="ghost" className="h-7 text-xs text-emerald-400 hover:text-emerald-300" onClick={() => downloadPhoto(item.imageUrl, item.title)}>
+                      <Download className="w-3 h-3" />
+                    </Button>
+                  )}
                   <Button size="sm" variant="ghost" className="h-7 text-xs text-destructive hover:text-destructive" onClick={() => deleteContent(item.id)}>
                     <Trash2 className="w-3 h-3" />
                   </Button>
