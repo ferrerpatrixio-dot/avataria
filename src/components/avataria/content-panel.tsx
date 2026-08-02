@@ -170,6 +170,32 @@ const PHOTO_CATEGORIES = [
       { value: '/leia-outfit12-white-halter-vol.png', label: 'Halter volume' },
     ],
   },
+  {
+    title: 'Selfies casuales',
+    photos: [
+      { value: '/leia-casual1-chinita.png', label: 'Chinita' },
+      { value: '/leia-casual2-tongue.png', label: 'Lengua' },
+      { value: '/leia-casual3-blow-kiss.png', label: 'Beso' },
+      { value: '/leia-casual4-towel-hands.png', label: 'Toalla' },
+      { value: '/leia-casual5-mirror-selfie.png', label: 'Mirror' },
+      { value: '/leia-casual6-wink.png', label: 'Wink' },
+      { value: '/leia-casual7-bed-stretch.png', label: 'Cama stretch' },
+      { value: '/leia-casual8-sunglasses.png', label: 'Lentes' },
+    ],
+  },
+  {
+    title: 'Selfies naturales',
+    photos: [
+      { value: '/leia-selfie1-chinita.png', label: 'Chinita' },
+      { value: '/leia-selfie2-tongue.png', label: 'Lengua' },
+      { value: '/leia-selfie3-beso.png', label: 'Beso' },
+      { value: '/leia-selfie4-towel-bano.png', label: 'Toalla baño' },
+      { value: '/leia-selfie5-messy-morning.png', label: 'Mañana' },
+      { value: '/leia-selfie6-car-selfie.png', label: 'Auto' },
+      { value: '/leia-selfie7-skincare.png', label: 'Skincare' },
+      { value: '/leia-selfie8-coffee.png', label: 'Café' },
+    ],
+  },
 ] as const
 
 const ALL_PHOTOS = PHOTO_CATEGORIES.flatMap(c => c.photos)
