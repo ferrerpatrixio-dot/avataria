@@ -559,7 +559,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
                   {item.status === 'in_production' && <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => updateStatus(item.id, 'review')}>Revisión</Button>}
                   {item.status === 'review' && <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => updateStatus(item.id, 'published')}>Publicar</Button>}
                   {item.imageUrl && (
-                    <Button size="sm" variant="ghost" className="h-7 text-xs text-emerald-400 hover:text-emerald-300" onClick={() => downloadPhoto(item.imageUrl, item.title)}>
+                    <Button size="sm" variant="ghost" className="h-7 text-xs text-emerald-400 hover:text-emerald-300" onClick={() => downloadPhoto(item.imageUrl!, item.title)}>
                       <Download className="w-3 h-3" />
                     </Button>
                   )}
