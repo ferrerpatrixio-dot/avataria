@@ -200,7 +200,7 @@ const PHOTO_CATEGORIES = [
   },
 ] as const
 
-const ALL_PHOTOS = PHOTO_CATEGORIES.flatMap(c => c.photos)
+const ALL_PHOTOS = PHOTO_CATEGORIES.flatMap(c => [...c.photos] as { value: string; label: string }[])
 
 export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const [generating, setGenerating] = useState(false)

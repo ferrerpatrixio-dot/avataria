@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import ZAI from 'z-ai-web-dev-sdk'
 
 // In-memory conversation store (per session)
-const conversations = new Map<string, { role: string; content: string }[]>()
+const conversations = new Map<string, { role: 'user' | 'assistant' | 'system'; content: string }[]>()
 
 const ADVISOR_SYSTEM_PROMPT = `Eres "El Estratega", un asesor de marketing experto en el mercado de creadoras de contenido y plataformas tipo OnlyFans/Fanvue en MÉXICO y ESPAÑA.
 

@@ -11,7 +11,9 @@
     "db:push": "prisma db push --accept-data-loss",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset"
+    "db:reset": "prisma migrate reset",
+    "db:seed-admin": "node prisma/seed-admin.mjs",
+    "vercel-build": "prisma generate && DATABASE_URL=$STORAGE_POSTGRES_URL_NON_POOLING prisma db push && DATABASE_URL=$STORAGE_POSTGRES_PRISMA_URL node prisma/seed-admin.mjs && next build"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

@@ -60,9 +60,10 @@ interface Budget {
   id: string
   category: string
   description: string | null
+  plannedAmount: number
   amount: number
   currency: string
-  spentAt: string
+  spentAt: string | null
 }
 
 interface ProjectData {

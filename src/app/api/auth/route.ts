@@ -33,7 +33,8 @@ export async function POST(request: Request) {
       user: { id: user.id, email: user.email, name: user.name, role: user.role },
       token,
     })
-  } catch {
+  } catch (error) {
+    console.error('Authentication request failed', error)
     return NextResponse.json({ error: 'Error del servidor' }, { status: 500 })
   }
 }
