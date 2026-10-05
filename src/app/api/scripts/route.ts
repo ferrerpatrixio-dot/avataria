@@ -1,6 +1,6 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
-import ZAI from 'z-ai-web-dev-sdk'
+import { generateText } from '@/lib/gemini'
 
 export async function GET() {
   try {
@@ -23,30 +23,8 @@ export async function POST(request: Request) {
     if (!project) return NextResponse.json({ error: 'Proyecto no encontrado' }, { status: 404 })
 
     if (action === 'generate') {
-      const zai = await ZAI.create()
-
-      // Auto-fetch trending context for sports hooks
-      let context = trendingContext || ''
-      if (!context && (type === 'hook_mma' || type === 'hook_futbol')) {
-        try {
-          const searchQuery = type === 'hook_mma'
-            ? 'UFC resultados pelea principal este sabado o ultima fecha julio 2025'
-            : 'partidos futbol internacional resultados este sabado o ultima fecha julio 2025'
-          const searchResults = await zai.functions.invoke('web_search', {
-            query: searchQuery,
-            num: 5,
-            recency_days: 7,
-          })
-          if (searchResults && searchResults.length > 0) {
-            context = searchResults
-              .slice(0, 5)
-              .map((r: { name: string; snippet: string }, i: number) => `${i + 1}. ${r.name}: ${r.snippet}`)
-              .join('\n')
-          }
-        } catch (searchErr) {
-          console.error('Trending search failed:', searchErr)
-        }
-      }
+      // Sin búsqueda web: el contexto trending solo llega si el usuario lo envía
+      const context = trendingContext || ''
 
       const systemPrompt = `Eres Leia, 25 años, mexicana, viviendo en Chile. Eres cálida, cariñosa, segura de ti misma y ligeramente coqueta sin ser vulgar. Hablas como alguien que está VIVIENDO las cosas en el momento — no como alguien que recuerda o analiza desde afuera. Tu tono es conversacional, directo, genuino. NUNCA gracioso, NUNCA sarcástico, NUNCA intentas hacer reír. Generas conexión emocional real: preguntas, te acuerdas, te preocupas.
 
@@ -104,17 +82,12 @@ Generas contenido para TikTok/Reels/Instagram. Tu objetivo: que cada suscriptor 
           full_script: `Escribe un guion completo de 60 segundos para TikTok de Leia. Hook en presente (primeras 3 seg), desarrollo con una opinión real sobre algo trending (deporte, música o emocional), cierre con pregunta que invite a comentar. Conversacional, directo, sin sarcasmo ni humor forzado. Termina siempre con pregunta. NO menciones ser IA.${contextBlock}`,
         }
         userPrompt = typePrompts[type] || typePrompts.hook_emocional
+        if (!context && (type === 'hook_mma' || type === 'hook_futbol')) {
+          userPrompt += ' No tienes datos en tiempo real: NO inventes resultados, fechas, marcadores ni nombres de eventos; habla en general y con emoción.'
+        }
       }
 
-      const completion = await zai.chat.completions.create({
-        messages: [
-          { role: 'assistant', content: systemPrompt },
-          { role: 'user', content: userPrompt },
-        ],
-        thinking: { type: 'disabled' },
-      })
-
-      const generatedContent = completion.choices[0]?.message?.content || ''
+      const generatedContent = await generateText(systemPrompt, [{ role: 'user', content: userPrompt }])
 
       const script = await db.script.create({
         data: {
@@ -159,6 +132,6 @@ Generas contenido para TikTok/Reels/Instagram. Tu objetivo: que cada suscriptor 
     return NextResponse.json({ error: 'Acción no válida' }, { status: 400 })
   } catch (error) {
     console.error('Script API error:', error)
-    return NextResponse.json({ error: 'Error generando guion' }, { status: 500 })
+    return NextResponse.json({ error: `Error generando guion: ${error instanceof Error ? error.message : 'desconocido'}` }, { status: 500 })
   }
 }

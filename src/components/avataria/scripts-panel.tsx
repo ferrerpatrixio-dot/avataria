@@ -85,7 +85,8 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
         toast.success('Guion generado por IA')
         onRefresh()
       } else {
-        toast.error('Error generando guion')
+        const data = await res.json().catch(() => ({}))
+        toast.error(data.error || 'Error generando guion')
       }
     } catch {
       toast.error('Error de conexión')

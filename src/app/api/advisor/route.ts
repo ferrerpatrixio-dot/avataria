@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import ZAI from 'z-ai-web-dev-sdk'
+import { generateText } from '@/lib/gemini'
 
 // In-memory conversation store (per session)
 const conversations = new Map<string, { role: 'user' | 'assistant' | 'system'; content: string }[]>()
@@ -69,13 +69,8 @@ export async function POST(request: Request) {
       conversations.set(sessionId, history)
     }
 
-    const zai = await ZAI.create()
-    const completion = await zai.chat.completions.create({
-      messages: history,
-      thinking: { type: 'disabled' },
-    })
-
-    const response = completion.choices[0]?.message?.content || 'No pude generar una respuesta.'
+    const turns = history.slice(1).filter((m): m is { role: 'user' | 'assistant'; content: string } => m.role !== 'system')
+    const response = (await generateText(history[0].content, turns)) || 'No pude generar una respuesta.'
 
     // Add assistant response to history
     history.push({ role: 'assistant', content: response })
@@ -87,7 +82,7 @@ export async function POST(request: Request) {
     })
   } catch (error) {
     console.error('Advisor API error:', error)
-    return NextResponse.json({ error: 'Error del asesor' }, { status: 500 })
+    return NextResponse.json({ error: `Error del asesor: ${error instanceof Error ? error.message : 'desconocido'}` }, { status: 500 })
   }
 }
 

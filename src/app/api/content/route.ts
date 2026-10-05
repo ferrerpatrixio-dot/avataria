@@ -194,7 +194,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Acción no válida' }, { status: 400 })
   } catch (error) {
     console.error('Content API error:', error)
-    return NextResponse.json({ error: 'Error en contenido' }, { status: 500 })
+    return NextResponse.json({ error: `Error en contenido: ${error instanceof Error ? error.message : 'desconocido'}` }, { status: 500 })
   }
 }
 
