@@ -67,6 +67,14 @@ export function BudgetPanel({ budgets }: BudgetPanelProps) {
             </div>
             <p className="text-2xl font-bold font-mono text-blue-400">${totalPlanned.toFixed(2)}</p>
             <p className="text-[11px] text-muted-foreground">en {budgets.filter((b) => b.plannedAmount > 0).length} herramientas</p>
+            <ul className="mt-2 space-y-0.5">
+              {budgets.filter((b) => b.plannedAmount > 0).map((b) => (
+                <li key={b.id} className="flex justify-between text-[11px] text-muted-foreground">
+                  <span>{(categoryConfig[b.category] || categoryConfig.other).label}</span>
+                  <span className="font-mono text-blue-400">${b.plannedAmount.toFixed(2)}</span>
+                </li>
+              ))}
+            </ul>
           </CardContent>
         </Card>
         <Card className="bg-card/60 border-blue-500/20">
