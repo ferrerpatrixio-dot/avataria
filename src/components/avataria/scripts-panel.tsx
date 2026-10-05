@@ -27,6 +27,7 @@ import {
   Trophy,
   Music,
   Heart,
+  MessageCircle,
 } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -53,6 +54,7 @@ const typeConfig: Record<string, { label: string; icon: React.ElementType; color
   hook_mma: { label: 'MMA/UFC', icon: Flame, color: 'text-red-400 bg-red-500/10' },
   hook_cultura: { label: 'Música/Cine/Series', icon: Music, color: 'text-pink-400 bg-pink-500/10' },
   hook_emocional: { label: 'Emocional/Coqueto', icon: Heart, color: 'text-rose-400 bg-rose-500/10' },
+  hook_consejos: { label: 'Consejos para Hombres', icon: MessageCircle, color: 'text-sky-400 bg-sky-500/10' },
   full_script: { label: 'Script Completo', icon: FileText, color: 'text-amber-400 bg-amber-500/10' },
   custom: { label: 'Personalizado', icon: Sparkles, color: 'text-primary bg-primary/10' },
 }
@@ -151,6 +153,7 @@ export function ScriptsPanel({ scripts, onRefresh }: ScriptsPanelProps) {
                   <SelectItem value="hook_mma">🔥 MMA/UFC</SelectItem>
                   <SelectItem value="hook_cultura">🎵 Música/Cine/Series</SelectItem>
                   <SelectItem value="hook_emocional">💝 Emocional/Coqueto</SelectItem>
+                  <SelectItem value="hook_consejos">🗣️ Consejos para Hombres</SelectItem>
                   <SelectItem value="full_script">📝 Script Completo (60s)</SelectItem>
                   <SelectItem value="custom">✨ Personalizado</SelectItem>
                 </SelectContent>
