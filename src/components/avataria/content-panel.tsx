@@ -217,8 +217,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const generateImage = async () => {
     setGenerating(true)
     try {
-      // 1. Start generation job
-      const startRes = await fetch('/api/content', {
+      const res = await fetch('/api/content', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -227,46 +226,16 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
           baseImage: selectedBase,
         }),
       })
-      const startData = await startRes.json()
-      if (!startRes.ok || !startData.jobId) {
-        toast.error(startData.error || 'Error al iniciar generación')
-        setGenerating(false)
-        return
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || data.status !== 'done') {
+        toast.error(data.error || 'Error en generación')
+      } else {
+        toast.success('Variación generada')
+        onRefresh()
       }
-
-      // 2. Poll for result
-      let attempts = 0
-      const maxAttempts = 90 // 3 minutes
-      const poll = async (): Promise<void> => {
-        attempts++
-        if (attempts > maxAttempts) {
-          toast.error('Tiempo de espera agotado')
-          setGenerating(false)
-          return
-        }
-        try {
-          const checkRes = await fetch(`/api/content?checkJob=${startData.jobId}`)
-          const checkData = await checkRes.json()
-          if (checkData.status === 'done') {
-            toast.success('Variación generada')
-            onRefresh()
-            setGenerating(false)
-            return
-          }
-          if (checkData.status === 'error') {
-            toast.error(checkData.error || 'Error en generación')
-            setGenerating(false)
-            return
-          }
-          // Still pending
-          setTimeout(poll, 2000)
-        } catch {
-          setTimeout(poll, 3000)
-        }
-      }
-      setTimeout(poll, 3000) // First check after 3s
     } catch (e: any) {
       toast.error('Error: ' + (e.message || 'sin conexión'))
+    } finally {
       setGenerating(false)
     }
   }
