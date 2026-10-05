@@ -88,16 +88,20 @@ const GENERAL_DECISIONS = [
 ]
 
 const BUDGETS = [
-  { category: 'elevenlabs', description: 'TTS — voz del avatar', plannedAmount: 5 },
+  { category: 'elevenlabs', description: 'TTS — voz del avatar', plannedAmount: 0 },
   { category: 'flux', description: 'Generación de imágenes (incluido en z-ai-sdk)', plannedAmount: 0 },
   { category: 'capcut', description: 'Edición de video (gratuito)', plannedAmount: 0 },
-  { category: 'kling_ai', description: 'Video con avatar animado — Solo si Fase 0 valida', plannedAmount: 15 },
+  { category: 'kling_ai', description: 'Video con avatar animado — Solo si Fase 0 valida', plannedAmount: 0 },
   { category: 'fanvue', description: 'Plataforma de suscripción — Solo si hay tracción', plannedAmount: 0 },
 ]
 
 async function seedProject() {
   const existing = await db.project.findFirst({ where: { name: 'AVATARIA' } })
-  if (existing) return existing
+  if (existing) {
+    // Los estimados de prueba se reiniciaron a $0; no hay UI para editarlos, así que se alinean con BUDGETS
+    await db.budget.updateMany({ where: { projectId: existing.id, amount: 0, plannedAmount: { gt: 0 } }, data: { plannedAmount: 0 } })
+    return existing
+  }
 
   const project = await db.project.create({
     data: {
