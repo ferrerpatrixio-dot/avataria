@@ -468,7 +468,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
 
                 <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
                   {item.platform && <Badge variant="outline" className="text-[10px] h-4 px-1.5">{item.platform}</Badge>}
-                  <span className="font-mono">{new Date(item.createdAt).toLocaleDateString('es-MX')}</span>
+                  <span className="font-mono">{new Date(item.createdAt).toLocaleString('es-MX', { dateStyle: 'short', timeStyle: 'short' })}</span>
                 </div>
 
                 {/* Metrics preview */}
