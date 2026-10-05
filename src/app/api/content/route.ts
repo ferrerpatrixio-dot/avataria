@@ -1,6 +1,7 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 import path from 'path'
+import { fetchGemini } from '@/lib/gemini'
 
 export const maxDuration = 60
 
@@ -146,17 +147,13 @@ export async function POST(request: Request) {
       const baseMime = safeName.endsWith('.png') ? 'image/png' : 'image/jpeg'
 
       // 2. Gemini
-      const gemRes = await fetch('https://generativelanguage.googleapis.com/v1beta/interactions', {
-        method: 'POST',
-        headers: { 'x-goog-api-key': apiKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: GEMINI_MODEL,
-          input: [
-            { type: 'text', text: promptStr },
-            { type: 'image', mime_type: baseMime, data: baseBuf.toString('base64') },
-          ],
-        }),
-      })
+      const gemRes = await fetchGemini({
+        model: GEMINI_MODEL,
+        input: [
+          { type: 'text', text: promptStr },
+          { type: 'image', mime_type: baseMime, data: baseBuf.toString('base64') },
+        ],
+      }, apiKey)
       const gemText = await gemRes.text()
       if (!gemRes.ok) {
         console.error('Gemini error', gemRes.status, gemText.slice(0, 500))

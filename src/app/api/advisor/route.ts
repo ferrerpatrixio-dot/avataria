@@ -38,6 +38,8 @@ TUS DIRECTRICES:
 9. Incluye datos específicos cuando puedas (ej: horarios óptimos de publicación, tipos de CTA)
 10. NUNCA recomiendes contenido que pueda violar términos de servicio de las plataformas`
 
+export const maxDuration = 60
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
