@@ -205,6 +205,7 @@ const ALL_PHOTOS = PHOTO_CATEGORIES.flatMap(c => [...c.photos] as { value: strin
 export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
   const [generating, setGenerating] = useState(false)
   const [showCreate, setShowCreate] = useState(false)
+  const [showGenerate, setShowGenerate] = useState(false)
   const [showMetric, setShowMetric] = useState<string | null>(null)
   const [newTitle, setNewTitle] = useState('')
   const [newType, setNewType] = useState('static_image')
@@ -230,7 +231,8 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
       if (!res.ok || data.status !== 'done') {
         toast.error(data.error || 'Error en generación')
       } else {
-        toast.success('Variación generada')
+        toast.success('Variación generada — aparece al inicio del pipeline')
+        setShowGenerate(false)
         onRefresh()
       }
     } catch (e: any) {
@@ -374,7 +376,7 @@ export function ContentPanel({ contents, onRefresh }: ContentPanelProps) {
           </DialogContent>
         </Dialog>
 
-        <Dialog>
+        <Dialog open={showGenerate} onOpenChange={setShowGenerate}>
           <DialogTrigger asChild>
             <Button size="sm" variant="outline" className="border-primary/30">
               <Sparkles className="w-4 h-4 mr-1 text-primary" /> Generar Imagen IA
