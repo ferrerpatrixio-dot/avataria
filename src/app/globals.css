@@ -122,22 +122,27 @@
 }
 
 /* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.75 0.01 270) oklch(0.2 0.005 270);
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: oklch(0.2 0.005 270);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.3 0.01 270);
-  border-radius: 3px;
+  background: oklch(0.75 0.01 270);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.4 0.01 270);
+  background: oklch(0.88 0.01 270);
 }
 
 /* Avataria brand glow */
@@ -188,18 +193,19 @@
 /* Visible scrollbar for dark theme */
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: oklch(0.5 0.15 150) transparent;
+  scrollbar-color: oklch(0.75 0.01 270) oklch(0.2 0.005 270);
 }
 .scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
+  height: 10px;
 }
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
+  background: oklch(0.2 0.005 270);
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: oklch(0.5 0.15 150);
-  border-radius: 3px;
+  background: oklch(0.75 0.01 270);
+  border-radius: 5px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.6 0.18 150);
+  background: oklch(0.88 0.01 270);
 }
